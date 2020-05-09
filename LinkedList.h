@@ -52,7 +52,7 @@ class LinkedList {
 public:
 
     LinkedList() {}  // Normal Constructor
-    ~LinkedList() {}  // Normal Destructor
+    ~LinkedList() { clearList(); }  // Normal Destructor
 
     /* This implementation of the Iterator can be used with:
 
@@ -150,13 +150,18 @@ public:
             node = getNodeAtIndex(1);
         } else {
             Node* leftNode = getNodeAtIndex(index - 1);
+            Node* willDel = leftNode->node;
             leftNode->node = leftNode->node->node;
+            delete willDel;
         }
     }
 
-    // Sets the head node as null.
+    // Deletes all the pointer.
     void clearList() {
-        node = NULL;
+        int count = size();
+        for (int i = 0; i < count; i++) {
+            del(0);
+        }
     }
 
     // Exactly the same as the add method.

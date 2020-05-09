@@ -1,5 +1,6 @@
 #include <iostream>
 #include "LinkedList.h"
+
 using namespace std;
 
 #pragma once
@@ -136,9 +137,7 @@ public:
             }
         // If right tree doesn't exist but left tree exist
         } else if (node->left !=NULL) {
-            cout << node->value << endl;
             node->value = node->left->value;
-            cout << node->value << endl;
             // if left tree has left tree
             if (node->left->left !=NULL) {
                 node->left = node->left->left;
