@@ -37,6 +37,12 @@
     <ClCompile Include="uaMainMenu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="uaReg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="uaMethods.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="uaApp.h">
@@ -46,6 +52,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="uaMainMenu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="uaReg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="uaMethods.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

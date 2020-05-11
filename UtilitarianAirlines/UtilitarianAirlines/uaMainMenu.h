@@ -17,14 +17,13 @@ private:
 	wxButton* btnLogo = nullptr;	//Will be replaced later with a better class
 	wxPanel* panelTop = nullptr;
 	wxPanel* panelBelow = nullptr;
+	wxPanel* panelCenter = nullptr;
 
 	//Methods
 private:
 	void Init();
 	void InitPanelTop();
 	void InitPanelBelow();
-
-public:
-	void revalidate();
+	void InitPanelCenter();
 };
 

@@ -13,22 +13,41 @@ uaMainMenu::~uaMainMenu()
 void uaMainMenu::Init()
 {
 	//Initialization
-	this->InitPanelTop();
-	this->InitPanelBelow();
-	wxGridSizer* grid = new wxGridSizer(2, 1, 0, 0);
-
-	//Add to sizer
-	grid->Add(panelTop, wxSizerFlags().Expand());
-	grid->Add(panelBelow, wxSizerFlags().Expand());
+	this->InitPanelCenter();
+	wxGridSizer* grid = new wxGridSizer(1, 3, 0, 0);
+	
+	//add to sizer
+	grid->Add(1, 1);
+	grid->Add(panelCenter, wxSizerFlags().Expand());
+	grid->Add(1, 1);
 
 	this->SetSizer(grid);
 	this->Layout();
 }
 
+void uaMainMenu::InitPanelCenter()
+{
+	//Initialization
+	panelCenter = new wxPanel(this, wxID_ANY);
+	this->InitPanelTop();
+	this->InitPanelBelow();
+	wxGridSizer* grid = new wxGridSizer(2, 1, 0, 0);
+
+	//Properties
+	panelCenter->SetBackgroundColour(wxColour(135, 223, 154, 0));
+
+	//Add to sizer
+	grid->Add(panelTop, wxSizerFlags().Expand());
+	grid->Add(panelBelow, wxSizerFlags().Expand());
+
+	panelCenter->SetSizer(grid);
+	panelCenter->Layout();
+}
+
 void uaMainMenu::InitPanelTop()
 {
 	//Initialization
-	panelTop = new wxPanel(this, wxID_ANY);
+	panelTop = new wxPanel(panelCenter, wxID_ANY);
 	btnLogo = new wxButton(panelTop, wxID_ANY, "Logo goes here");
 	wxGridSizer* grid = new wxGridSizer(1, 1, 0, 0);
 
@@ -44,8 +63,8 @@ void uaMainMenu::InitPanelTop()
 void uaMainMenu::InitPanelBelow()
 {
 	//Initialization
-	panelBelow = new wxPanel(this, wxID_ANY);
-	btnReg = new wxButton(panelBelow, wxID_ANY, "Register");
+	panelBelow = new wxPanel(panelCenter, wxID_ANY);
+	btnReg = new wxButton(panelBelow, 10001, "Register");
 	btnSeat = new wxButton(panelBelow, wxID_ANY, "See Seating");
 	btnExit = new wxButton(panelBelow, wxID_ANY, "Exit");
 	wxGridSizer* grid = new wxGridSizer(3, 1, 0, 0);

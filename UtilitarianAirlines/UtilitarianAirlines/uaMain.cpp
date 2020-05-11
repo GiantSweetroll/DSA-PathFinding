@@ -1,27 +1,36 @@
 #include "uaMain.h"
 
+wxBEGIN_EVENT_TABLE(uaMain, wxFrame)
+	EVT_BUTTON(10001, OnRegClicked)
+wxEND_EVENT_TABLE()
+
+
 uaMain::uaMain() : wxFrame(nullptr, wxID_ANY, "Seating - Utilitarian Airlines", wxPoint(50, 50), wxSize(800, 600))
 {
 	//Initialization
 	mainMenu = new uaMainMenu(this);
-	wxGridSizer* grid = new wxGridSizer(1, 3, 0, 0);
+	reg = new uaReg(this);
+	sizer = new wxGridSizer(1, 1, 0, 0);
 ;	//panelReg = new wxPanel(this, 10002, wxPoint(0,0), wxSize(c_wWidth, c_wHeight));
-
-	//Properties
-	mainMenu->SetBackgroundColour(wxColour(135, 223, 154, 0));
-
-	//Add to sizer
-	grid->Add(1, 1);
-	grid->Add(mainMenu, wxSizerFlags().Expand());
-	grid->Add(1, 1);
 	
-	this->SetSizer(grid);
+	//Add to sizer
+	sizer->Add(mainMenu, wxSizerFlags().Expand());
+
+	this->SetSizer(sizer);
 	this->Layout();
 }
 
 uaMain::~uaMain()
 {
 
+}
+
+void uaMain::OnRegClicked(wxCommandEvent& evt)
+{
+	sizer->Replace(mainMenu, reg);
+	mainMenu->Hide();
+
+	this->Layout();
 }
 
 /*

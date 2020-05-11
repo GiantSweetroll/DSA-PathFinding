@@ -156,14 +156,18 @@
     <Image Include="UtilitarianAirlines.ico" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="uaMethods.cpp" />
     <ClCompile Include="uaApp.cpp" />
     <ClCompile Include="uaMain.cpp" />
     <ClCompile Include="uaMainMenu.cpp" />
+    <ClCompile Include="uaReg.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="uaMethods.h" />
     <ClInclude Include="uaApp.h" />
     <ClInclude Include="uaMain.h" />
     <ClInclude Include="uaMainMenu.h" />
+    <ClInclude Include="uaReg.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
