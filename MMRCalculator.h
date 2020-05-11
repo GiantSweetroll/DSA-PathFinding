@@ -34,8 +34,10 @@ public:
         double BMI = weightKilos / (heightMeters * heightMeters);
         if (gender == 'f') {
             points *= femaleBMI.calculate(BMI) * femaleAge.calculate(age/10.0);
-        } else {
+        } else if (gender == 'm') {
             points *= maleBMI.calculate(BMI) * maleAge.calculate(age/10.0);
+        } else {
+            poins = 0;
         }
 
         return points;
