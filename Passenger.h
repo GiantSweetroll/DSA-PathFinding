@@ -4,18 +4,20 @@
 
 class Passenger {
 
-private:
+public:
 
     // The enumeration for disabilities.
     enum Disabilities {
     NONE=100,
     HANDICAPPED=50,
-    HEAVYVISIONIMPAIRMENT=30,
+    BLIND=30,
     MENTALILLNESS=95,
     MILDSICKNESS=90,
     HEAVYSICKNESS=60,
     MUSCLEATROPHY=40
     };
+
+private:
 
     // All of the counter functions.
     PolyFunc maleBMI;
@@ -66,11 +68,11 @@ public:
             mmr = 0;
         }
 
-        mmr *= (pregnant ? 0.75 : 1) * (disabilities / 100);
+        mmr *= (pregnant ? 0.75 : 1.0) * (disabilities / 100.0);
 
     }
 
-    double getMmr() {
+    double getMMR() {
         return mmr;
     }
 

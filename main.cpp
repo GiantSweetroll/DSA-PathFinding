@@ -3,6 +3,7 @@
 #include "BST.h"
 #include "MMRCalculator.h"
 #include "PolyFunc.h"
+#include "Passenger.h"
 
 using namespace std;
 
@@ -55,6 +56,10 @@ int main() {
     MMRCalculator calc = MMRCalculator();
 
     cout << calc.calculateMMR('m', 18, 80.0, 1.78) << endl;
+
+    Passenger psg('m', 18, 69.0, 1.78, false, Passenger::Disabilities::BLIND);
+
+    cout << psg.getMMR() << endl;
 
 
     return 0;
