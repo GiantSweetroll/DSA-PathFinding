@@ -54,7 +54,7 @@ int main() {
 
     MMRCalculator calc = MMRCalculator();
 
-    cout << calc.calculateMMR('m', 18, 69.1, 1.80) << endl;
+    cout << calc.calculateMMR('m', 18, 80.0, 1.78) << endl;
 
 
     return 0;

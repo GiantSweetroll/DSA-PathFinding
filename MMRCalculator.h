@@ -2,6 +2,10 @@
 
 #pragma once
 
+/*
+THIS IS AN UNUSED CLASS, USED ONLY FOR CALCULATING MMR. EACH PASSENGER'S CONSTRUCTOR ALREADY CALCULATES THEIR MMR
+*/
+
 class MMRCalculator {
 
 private:
@@ -37,7 +41,7 @@ public:
         } else if (gender == 'm') {
             points *= maleBMI.calculate(BMI) * maleAge.calculate(age/10.0);
         } else {
-            poins = 0;
+            points = 0;
         }
 
         return points;
