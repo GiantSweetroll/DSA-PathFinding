@@ -19,12 +19,6 @@ public:
 
 private:
 
-    // All of the counter functions.
-    PolyFunc maleBMI;
-    PolyFunc femaleBMI;
-    PolyFunc maleAge;
-    PolyFunc femaleAge;
-
     double mmr;
 
     char gender;
@@ -51,11 +45,11 @@ public:
         double mBMI[] = {-0.0010396607505878297, 0.050036898844165074, 0.40021467028401847};
         double fBMI[] = {-0.0012201516544647953, 0.05844523061769345, 0.3578829726695962};
 
-        maleBMI.changeFunc(mBMI, 3);
-        femaleBMI.changeFunc(fBMI, 3);
+        PolyFunc maleBMI(mBMI, 3);
+        PolyFunc femaleBMI(fBMI, 3);
 
-        maleAge.changeFunc(mAge, 8);
-        femaleAge.changeFunc(fAge, 8);
+        PolyFunc maleAge(mAge, 8);
+        PolyFunc femaleAge(fAge, 8);
 
         mmr = 1;
 

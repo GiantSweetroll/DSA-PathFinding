@@ -10,57 +10,15 @@ using namespace std;
 int main() {
     cout << "Hello, World!" << endl;
 
-    // LinkedList<int> list;
-    
-    // BST<int> bst;
+    // TODO:
+    /* Make Plane.h:
+        In plane object, there is 2 dimensional LinkedList for seating.
 
-    // bst.insert(152);
-    // bst.insert(213);
-    // bst.insert(15);
-    // bst.insert(613);
-    // bst.insert(3);
-    // bst.insert(125);
-    // bst.insert(13);
-    // bst.insert(64);
-    // bst.insert(32);
-    // bst.insert(2123);
+        function:
+        Plane.reGenerate(): Generates a new seating arrangement based on random Passengers.
+        Plane.reGenerate(LinkedList<Passenger>): Generates a new seating arrangement based on random Passengers WITH custom passengers.
 
-    // bst.del(15);
-    // bst.del(125);
-    // bst.del(32);
-
-    // bst.printInOrder();
-
-    
-    // LinkedList<int> yes = bst.returnInOrder();
-    
-    // for (int i = 0; i < yes.size(); i++) {
-    //     cout << yes.get(i) << endl;
-    // }
-    
-    // LinkedList<int> ant;
-
-    // for (int i = 0; i < 5; i++) {
-    //     ant.add(i);
-    // }
-
-    // cout << ant.size() << endl;
-    // ant.clearList();
-    // cout << ant.size() << endl;
-
-    // double arr[] = {1, -5, 3};
-    // PolyFunc f(arr, 3);
-
-    // cout << f.calculate(0) << endl;
-
-    MMRCalculator calc = MMRCalculator();
-
-    cout << calc.calculateMMR('m', 18, 80.0, 1.78) << endl;
-
-    Passenger psg('m', 18, 69.0, 1.78, false, Passenger::Disabilities::BLIND);
-
-    cout << psg.getMMR() << endl;
-
+    */
 
     return 0;
 }
