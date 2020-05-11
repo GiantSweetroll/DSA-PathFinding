@@ -1,6 +1,8 @@
 #include <iostream>
 #include <memory>
 #include "BST.h"
+#include "MMRCalculator.h"
+#include "PolyFunc.h"
 
 using namespace std;
 
@@ -35,15 +37,25 @@ int main() {
     //     cout << yes.get(i) << endl;
     // }
     
-    LinkedList<int> ant;
+    // LinkedList<int> ant;
 
-    for (int i = 0; i < 5; i++) {
-        ant.add(i);
-    }
+    // for (int i = 0; i < 5; i++) {
+    //     ant.add(i);
+    // }
 
-    cout << ant.size() << endl;
-    ant.clearList();
-    cout << ant.size() << endl;
+    // cout << ant.size() << endl;
+    // ant.clearList();
+    // cout << ant.size() << endl;
+
+    // double arr[] = {1, -5, 3};
+    // PolyFunc f(arr, 3);
+
+    // cout << f.calculate(0) << endl;
+
+    MMRCalculator calc = MMRCalculator();
+
+    cout << calc.calculateMMR('m', 18, 69.1, 1.80) << endl;
+
 
     return 0;
 }

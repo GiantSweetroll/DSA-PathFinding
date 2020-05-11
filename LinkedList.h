@@ -1,5 +1,5 @@
-#include <iostream>
-using namespace std;
+
+#pragma once
 
 
 // The template functions so that any type of values is accepted.
