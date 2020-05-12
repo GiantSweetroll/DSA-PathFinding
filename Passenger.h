@@ -100,4 +100,28 @@ public:
 
     // TODO: Overload < and > operators.
 
+    bool operator < (const Passenger right) {
+        return (this->mmr < right.mmr);
+    }
+
+    bool operator > (const Passenger right) {
+        return (this->mmr > right.mmr);
+    }
+
+    bool operator <= (const Passenger right) {
+        return (this->mmr <= right.mmr);
+    }
+
+    bool operator >= (const Passenger right) {
+        return (this->mmr >= right.mmr);
+    }
+
+        bool operator < (const Passenger right) {
+        return (this->mmr < right.mmr);
+    }
+
+    bool operator == (const Passenger right) {
+        return (this->mmr == right.mmr);
+    }
+
 };
