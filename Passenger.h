@@ -30,6 +30,8 @@ private:
 
 public:
 
+    Passenger() {}
+
     Passenger(char gender, int age, double weightKilos, double heightMeters, bool pregnant, Disabilities disabilities) {
 
         this->gender = gender;

@@ -1,6 +1,7 @@
 
 #pragma once
 
+// WARNING: ALL OF THE TYPE VALUES THAT WANTS TO BE PUT HERE MUST HAVE A DEFAULT CONSTRUCTOR.
 
 // The template functions so that any type of values is accepted.
 template <typename T>
