@@ -1,7 +1,10 @@
 #include <stdlib.h>
 #include <memory>
+#include <iostream>
 #include "LinkedList.h"
 #include "Passenger.h"
+
+using namespace std;
 
 class Plane {
 
@@ -35,7 +38,7 @@ public:
         */
        for (int i = 0; i < length; i++) {
            LinkedList<Passenger> temp = LinkedList<Passenger>();
-           for (int j = 0; i < width; j++) {
+           for (int j = 0; j < width; j++) {
                Passenger newPass = Passenger('m', 30, 69.0, 160.9, false, Passenger::Disabilities::NONE);
                temp.add(newPass);
            }

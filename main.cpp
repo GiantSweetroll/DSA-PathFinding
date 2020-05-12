@@ -21,8 +21,12 @@ int main() {
 
     */
 
-   Plane p = Plane(7, 4);
-   p.generate();
+    cout << RAND_MAX;
+
+    Plane p = Plane(7, 4);
+    p.generate();
+
+    cout << "arab funny lol";
 
     return 0;
 }
