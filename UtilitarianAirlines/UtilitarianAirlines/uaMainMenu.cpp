@@ -64,9 +64,9 @@ void uaMainMenu::InitPanelBelow()
 {
 	//Initialization
 	panelBelow = new wxPanel(panelCenter, wxID_ANY);
-	btnReg = new wxButton(panelBelow, 10001, "Register");
-	btnSeat = new wxButton(panelBelow, wxID_ANY, "See Seating");
-	btnExit = new wxButton(panelBelow, wxID_ANY, "Exit");
+	btnReg = new wxButton(panelBelow, uaID::c_btnMainReg, "Register");
+	btnSeat = new wxButton(panelBelow, uaID::c_btnMainSeat, "See Seating");
+	btnExit = new wxButton(panelBelow, uaID::c_btnMainExit, "Exit");
 	wxGridSizer* grid = new wxGridSizer(3, 1, 0, 0);
 
 	//Add to sizer

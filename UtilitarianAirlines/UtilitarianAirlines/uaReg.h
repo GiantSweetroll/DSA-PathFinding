@@ -3,6 +3,7 @@
 #include "wx/wx.h"
 #include "wx/combobox.h"
 #include "uaMethods.h"
+#include "uaID.h"
 
 class uaReg : public wxPanel
 {

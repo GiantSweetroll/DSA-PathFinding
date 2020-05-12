@@ -1,7 +1,10 @@
 #include "uaMain.h"
 
 wxBEGIN_EVENT_TABLE(uaMain, wxFrame)
-	EVT_BUTTON(10001, OnRegClicked)
+	EVT_BUTTON(uaID::c_btnMainReg, OnMainRegClicked)
+	EVT_BUTTON(uaID::c_btnMainSeat, OnMainSeatClicked)
+	EVT_BUTTON(uaID::c_btnMainExit, OnMainExitClicked)
+	EVT_BUTTON(uaID::c_btnRegBack, OnRegBackClicked)
 wxEND_EVENT_TABLE()
 
 
@@ -25,12 +28,31 @@ uaMain::~uaMain()
 
 }
 
-void uaMain::OnRegClicked(wxCommandEvent& evt)
+void uaMain::OnMainRegClicked(wxCommandEvent& evt)
 {
 	sizer->Replace(mainMenu, reg);
 	mainMenu->Hide();
+	reg->Show();
 
 	this->Layout();
+}
+
+void uaMain::OnRegBackClicked(wxCommandEvent& evt)
+{
+	sizer->Replace(reg, mainMenu);
+	reg->Hide();
+	mainMenu->Show();
+
+	this->Layout();
+}
+
+void uaMain::OnMainExitClicked(wxCommandEvent& evt)
+{
+	Destroy();
+}
+
+void uaMain::OnMainSeatClicked(wxCommandEvent& evt)
+{
 }
 
 /*

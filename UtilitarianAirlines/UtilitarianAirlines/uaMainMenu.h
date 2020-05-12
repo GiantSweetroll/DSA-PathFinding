@@ -1,6 +1,7 @@
 #pragma once
 
 #include "wx/wx.h"
+#include "uaID.h"
 
 class uaMainMenu : public wxPanel
 {

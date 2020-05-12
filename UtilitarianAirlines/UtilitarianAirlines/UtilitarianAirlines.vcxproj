@@ -156,6 +156,7 @@
     <Image Include="UtilitarianAirlines.ico" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="uaID.cpp" />
     <ClCompile Include="uaMethods.cpp" />
     <ClCompile Include="uaApp.cpp" />
     <ClCompile Include="uaMain.cpp" />
@@ -163,6 +164,7 @@
     <ClCompile Include="uaReg.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="uaID.h" />
     <ClInclude Include="uaMethods.h" />
     <ClInclude Include="uaApp.h" />
     <ClInclude Include="uaMain.h" />

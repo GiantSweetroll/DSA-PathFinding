@@ -3,6 +3,7 @@
 #include "wx/wx.h"
 #include "uaMainMenu.h"
 #include "uaReg.h"
+#include "uaID.h"
 
 class uaMain : public wxFrame
 {
@@ -21,7 +22,10 @@ private:
 	wxGridSizer* sizer = nullptr;
 
 	//Methods
-	void OnRegClicked(wxCommandEvent& evt);
+	void OnMainRegClicked(wxCommandEvent& evt);
+	void OnMainSeatClicked(wxCommandEvent& evt);
+	void OnMainExitClicked(wxCommandEvent& evt);
+	void OnRegBackClicked(wxCommandEvent& evt);
 
 	wxDECLARE_EVENT_TABLE();
 };
