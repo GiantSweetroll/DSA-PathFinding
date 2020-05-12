@@ -1,5 +1,5 @@
 #include <iostream>
-#include <memory>
+#include <time.h>
 #include "BST.h"
 #include "MMRCalculator.h"
 #include "PolyFunc.h"
@@ -11,6 +11,8 @@ using namespace std;
 int main() {
     cout << "Hello, World!" << endl;
 
+    srand(time(NULL)); // Random seed for the randomizer
+
     // TODO:
     /* Make Plane.h:
         In plane object, there is 2 dimensional LinkedList for seating.
@@ -21,12 +23,8 @@ int main() {
 
     */
 
-    cout << RAND_MAX;
-
     Plane p = Plane(7, 4);
     p.generate();
-
-    cout << "arab funny lol";
 
     return 0;
 }

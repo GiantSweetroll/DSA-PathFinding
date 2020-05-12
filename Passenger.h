@@ -95,5 +95,9 @@ public:
     Disabilities getDisabilities() {
         return disabilities;
     }
+    
+    // Custom methods
+
+    // TODO: Overload < and > operators.
 
 };
