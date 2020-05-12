@@ -78,7 +78,7 @@ public:
     Node* head = NULL;
 
     BST() {} // Default Constructor
-    ~BST() {} // Default Deconstructor
+    ~BST() { delete head; } // Default Deconstructor
 
     void insert(T value) {
         // Create a newNode variable with new value

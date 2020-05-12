@@ -52,7 +52,7 @@ class LinkedList {
 public:
 
     LinkedList() {}  // Normal Constructor
-    ~LinkedList() { clearList(); }  // Normal Destructor
+    ~LinkedList() { clearList(); delete node; }  // Normal Destructor
 
     /* This implementation of the Iterator can be used with:
 
