@@ -22,7 +22,7 @@ class Plane {
 
 private:
 
-    Passenger you;
+    LinkedList<Passenger> customPassengers;
     LinkedList<LinkedList<Passenger>> passengers;
     LinkedList<SeatCoord> emergencyExits;
     int length;
@@ -35,6 +35,12 @@ private:
         SeatCoord seat;
         double dist;
     };
+
+    int clamp(int val, int min, int max) {
+        if (val < min) { return min; }
+        else if (val > max) { return max; }
+        else { return val; }
+    }
 
 public:
 
@@ -59,12 +65,18 @@ public:
         If invoked when already generated, regenerate all the passengers. If "you" is filled, then use it.
         */
 
-       passengers.clearList();
+        passengers.clearList();
 
-        // Generates all the random passengers and sort them in the BST.
         BST<Passenger> sortedPassengers = BST<Passenger>();
 
-        for (int i = 0; i < (length * width); i++) {
+        // Adds all the custom passengers to the BST
+        for (int i = 0; i < clamp(customPassengers.size(), 0, (length * width)); i++) {
+            sortedPassengers.insert(customPassengers.get(i));
+        }
+
+        // Generates all the random passengers and sort them in the BST.
+
+        for (int i = 0; i < clamp(((length * width) - customPassengers.size()), 0, (length * width)); i++) {
             Passenger tempPass = Passenger(
                 'm',
                 ((rand() % (MAX_AGE - MIN_AGE)) + MIN_AGE), // Random age with min 2 and max 85
@@ -128,6 +140,7 @@ public:
             }
             passengers.add(temp);
         }
+        // End of bogus value assignment
 
         // Adds all of the sorted passengers based on their mmrs to their seating.
         // Returns the previous BST data.
@@ -138,8 +151,18 @@ public:
         }
     }
 
-    void addYou(Passenger you) {
-        this->you = you;
+    void addCustomPasengers(Passenger passenger) {
+        customPassengers.add(passenger);
+    }
+
+    void addCustomPassengers(LinkedList<Passenger> passengers) {
+        for (int i = 0; i < passengers.size(); i++) {
+            customPassengers.add(passengers.get(i));
+        }
+    }
+
+    void clearCustomPassengers() {
+        customPassengers.clearList();
     }
 
     bool addEmergencyExit(int lengthAxis, int widthAxis) {

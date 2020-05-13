@@ -15,11 +15,13 @@ int main() {
 
     Plane p = Plane(7, 4);
 
-    p.addEmergencyExit(0, 0);
-    p.addEmergencyExit(0, 3);
+    // p.addEmergencyExit(0, 0);
+    // p.addEmergencyExit(0, 3);
 
-    p.generate();
-    p.printGeneratedPassengers();
+    // p.generate();
+    // p.printGeneratedPassengers();
+
+    p.printRandomPassengers(20);
 
     cout << "Program execution complete." << endl;
 
