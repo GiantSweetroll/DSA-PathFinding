@@ -81,7 +81,7 @@ public:
                 'm',
                 ((rand() % (MAX_AGE - MIN_AGE)) + MIN_AGE), // Random age with min 2 and max 85
                 ((rand() % (MAX_WEIGHT - MIN_WEIGHT)) + MIN_WEIGHT), // Random weight with min 47 and max 206
-                ((rand() % (MAX_HEIGHT - MIN_HEIGHT)) + MIN_HEIGHT), // Random height with min 90 and max 210
+                (((rand() % (MAX_HEIGHT - MIN_HEIGHT)) + MIN_HEIGHT) / 100.0), // Random height with min 90 and max 210
                 false,
                 Passenger::Disabilities::NONE
             );
@@ -223,7 +223,7 @@ public:
                 'm',
                 ((rand() % (MAX_AGE - MIN_AGE)) + MIN_AGE), // Random age with min 2 and max 85
                 ((rand() % (MAX_WEIGHT - MIN_WEIGHT)) + MIN_WEIGHT), // Random weight with min 47 and max 206
-                ((rand() % (MAX_HEIGHT - MIN_HEIGHT)) + MIN_HEIGHT), // Random height with min 90 and max 210
+                (((rand() % (MAX_HEIGHT - MIN_HEIGHT)) + MIN_HEIGHT) / 100.0), // Random height with min 90 and max 210
                 false,
                 Passenger::Disabilities::NONE
             );
