@@ -5,6 +5,7 @@
 #include "LinkedList.h"
 #include "Passenger.h"
 #include "BST.h"
+#include "SeatCoord.h"
 
 #define MIN_AGE 8
 #define MAX_AGE 83
@@ -21,6 +22,7 @@ private:
 
     Passenger you;
     LinkedList<LinkedList<Passenger>> passengers;
+    LinkedList<SeatCoord> emergencyExits;
     int length;
     int width;
 
@@ -62,6 +64,8 @@ public:
             sortedPassengers.insert(tempPass);
         }
 
+        // Default emergency exit is (0, 0)
+
         // Uncomment to print results for random generation
         // LinkedList<Passenger> sorted = sortedPassengers.returnInOrder();
 
@@ -88,6 +92,19 @@ public:
 
     void addYou(Passenger you) {
         this->you = you;
+    }
+
+    bool addEmergencyExit(int lengthAxis, int widthAxis) {
+        if ((lengthAxis < 0 || lengthAxis > length) || (widthAxis < 0 || widthAxis > width)) {
+            return false;
+        }
+
+        emergencyExits.add(SeatCoord(lengthAxis, widthAxis));
+        return true;
+    }
+
+    void clearEmergencyExit() {
+        emergencyExits.clearList();
     }
 
 };
