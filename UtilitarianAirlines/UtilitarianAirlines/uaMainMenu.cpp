@@ -48,11 +48,11 @@ void uaMainMenu::InitPanelTop()
 {
 	//Initialization
 	panelTop = new wxPanel(panelCenter, wxID_ANY);
-	btnLogo = new wxButton(panelTop, wxID_ANY, "Logo goes here");
+	logo = new wxStaticBitmap(panelTop, wxID_ANY, wxBitmap("download.bmp", wxBITMAP_TYPE_BMP));
 	wxGridSizer* grid = new wxGridSizer(1, 1, 0, 0);
 
 	//Add to sizer
-	grid->Add(btnLogo, wxSizerFlags().Expand());
+	grid->Add(logo, wxSizerFlags().Expand());
 
 	//Set panel sizer
 	panelTop->SetSizer(grid);

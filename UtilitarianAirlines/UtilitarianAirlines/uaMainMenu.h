@@ -15,7 +15,7 @@ private:
 	wxButton* btnReg = nullptr;
 	wxButton* btnSeat = nullptr;
 	wxButton* btnExit = nullptr;
-	wxButton* btnLogo = nullptr;	//Will be replaced later with a better class
+	wxStaticBitmap* logo = nullptr;
 	wxPanel* panelTop = nullptr;
 	wxPanel* panelBelow = nullptr;
 	wxPanel* panelCenter = nullptr;
