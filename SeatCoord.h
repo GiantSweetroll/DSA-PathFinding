@@ -1,6 +1,7 @@
 #pragma once
 
 struct SeatCoord {
+    // (length, width)
 
     SeatCoord() {}
 

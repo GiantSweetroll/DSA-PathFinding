@@ -129,6 +129,11 @@ public:
         return getNodeAtIndex(index)->value;
     }
 
+    void update(int index, T value) {
+        // Updates the value in the specified index.
+        getNodeAtIndex(index)->value = value;
+    }
+
     // Inserts a new value into the list by moving the node pointer into
     // the new Node object made, and set the pointer of the newly made object to
     // the next specified index.
