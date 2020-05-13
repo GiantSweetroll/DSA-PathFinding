@@ -13,23 +13,15 @@ int main() {
 
     srand(time(NULL)); // Random seed for the randomizer
 
-    // TODO:
-    /* Make Plane.h:
-        In plane object, there is 2 dimensional LinkedList for seating.
-
-        function:
-        Plane.reGenerate(): Generates a new seating arrangement based on random Passengers.
-        Plane.reGenerate(LinkedList<Passenger>): Generates a new seating arrangement based on random Passengers WITH custom passengers.
-
-    */
-
     Plane p = Plane(7, 4);
+
+    p.addEmergencyExit(0, 0);
+    p.addEmergencyExit(0, 3);
+
     p.generate();
+    p.printGeneratedPassengers();
 
-    // Passenger p1 = Passenger('m', 18, 87, 171, false, Passenger::Disabilities::NONE);
-    // Passenger p2 = Passenger('m', 30, 69.0, 160.9, false, Passenger::Disabilities::BLIND);
-
-    // cout << (p1 < p2) << endl;
+    cout << "Program execution complete." << endl;
 
     return 0;
 }

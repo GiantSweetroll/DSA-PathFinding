@@ -59,6 +59,8 @@ public:
         If invoked when already generated, regenerate all the passengers. If "you" is filled, then use it.
         */
 
+       passengers.clearList();
+
         // Generates all the random passengers and sort them in the BST.
         BST<Passenger> sortedPassengers = BST<Passenger>();
 
@@ -96,8 +98,8 @@ public:
                     if (tempDist < curDistance) { curDistance = tempDist; } // Assigns to variable
                 }
                 // Do insertion sort here to the linked list.
-                // If orderedSeating size is 0, just insert into the list.
-                if (orderedSeating.size() == 0) { orderedSeating.add(SeatToExit(SeatCoord(i, j), curDistance)); }
+                // If orderedSeating size is 0, just insert into the list and restart for loop.
+                if (orderedSeating.size() == 0) { orderedSeating.add(SeatToExit(SeatCoord(i, j), curDistance)); continue; }
                 // Loops in the orderedSeating
                 for (int s = 0; s < orderedSeating.size(); s++) {
                     // sort in DESCENDING order.
@@ -118,44 +120,22 @@ public:
         }
         // End of sorting.
 
-        // Adds all of the sorted passengers based on their mmrs to their seating.
-
-        for (int i = 0; i < orderedSeating.size(); i++) {
-            
+        // Fills the passengers linkedlist with bogus value.
+        for (int i = 0; i < length; i++) {
+            LinkedList<Passenger> temp = LinkedList<Passenger>();
+            for (int j = 0; j < width; j++) {
+                temp.add(Passenger());
+            }
+            passengers.add(temp);
         }
 
-        // for (int i = 0; i < length; i++) {
-        //     LinkedList<Passenger> temp = LinkedList<Passenger>();
-        //     for (int j = 0; j < width; j++) {
-        //         Passenger newPass = Passenger('m', 30, 69.0, 160.9, false, Passenger::Disabilities::NONE);
-        //         temp.add(newPass);
-        //     }
-        //     passengers.add(temp);
-        // }
+        // Adds all of the sorted passengers based on their mmrs to their seating.
+        // Returns the previous BST data.
+        LinkedList<Passenger> orderedPassengerList = sortedPassengers.returnInOrder();
 
-
-        // Uncomment to print results for random generation
-        // LinkedList<Passenger> sorted = sortedPassengers.returnInOrder();
-
-        // cout << sorted.size() << endl;
-
-        // for (int i = 0; i < sorted.size(); i++) {
-        //     Passenger tempPass = sorted.get(i);
-        //     cout << "gender: " << tempPass.getGender() << " ";
-        //     cout << "age:" << setfill(' ') << setw(5) << tempPass.getAge() << " ";
-        //     cout << "weight:" << setfill(' ') << setw(8) << tempPass.getWeight() << " ";
-        //     cout << "height:" << setfill(' ') << setw(8) << tempPass.getHeight() << " ";
-        //     cout << "MMR:" << setfill(' ') << setw(9) << tempPass.getMMR() << endl;
-        // }
-
-        //    for (int i = 0; i < length; i++) {
-        //        LinkedList<Passenger> temp = LinkedList<Passenger>();
-        //        for (int j = 0; j < width; j++) {
-        //            Passenger newPass = Passenger('m', 30, 69.0, 160.9, false, Passenger::Disabilities::NONE);
-        //            temp.add(newPass);
-        //        }
-        //        passengers.add(temp);
-        //    }
+        for (int i = 0; i < orderedSeating.size(); i++) {
+            passengers.get( orderedSeating.get(i).seat.lengthAxis ).update( orderedSeating.get(i).seat.widthAxis, orderedPassengerList.get(i) );
+        }
     }
 
     void addYou(Passenger you) {
@@ -173,6 +153,72 @@ public:
 
     void clearEmergencyExit() {
         emergencyExits.clearList();
+    }
+
+    void printGeneratedPassengers() {
+
+        cout << "Length V, Width ->" << endl;
+
+        if (passengers.size() == 0 ) {
+            cout << "Not generated yet !" << endl;
+            return;
+        }
+
+        cout << " ";
+
+        for (int i = 0; i < passengers.get(0).size(); i++) {
+            cout << "         " << i;
+        }
+
+        cout << endl;
+
+        for (int i = 0; i < passengers.size(); i++) {
+            // Looping through the length
+            cout << i << " ";
+            for (int j = 0; j < passengers.get(i).size(); j++) {
+                // Looping through the width
+                // cout << setfill(' ') << setw(5) << (round(passengers.get(i).get(j).getMMR() * 1000.0) / 1000.0) << " "; // rounded
+                cout << setfill(' ') << setw(9) << passengers.get(i).get(j).getMMR() << " "; // not rounded
+            }
+            cout << endl;
+        }
+
+        cout << "Exit points:" << endl;
+
+        // Prints the exit points
+        for (int i = 0; i < emergencyExits.size(); i++) {
+            cout << "(" << emergencyExits.get(i).lengthAxis << ", " << emergencyExits.get(i).widthAxis << ")" << endl;
+        }
+    }
+
+    void printRandomPassengers(int size) {
+
+        BST<Passenger> sortedPassengers = BST<Passenger>();
+
+        for (int i = 0; i < size; i++) {
+            Passenger tempPass = Passenger(
+                'm',
+                ((rand() % (MAX_AGE - MIN_AGE)) + MIN_AGE), // Random age with min 2 and max 85
+                ((rand() % (MAX_WEIGHT - MIN_WEIGHT)) + MIN_WEIGHT), // Random weight with min 47 and max 206
+                ((rand() % (MAX_HEIGHT - MIN_HEIGHT)) + MIN_HEIGHT), // Random height with min 90 and max 210
+                false,
+                Passenger::Disabilities::NONE
+            );
+            sortedPassengers.insert(tempPass);
+        }
+
+        LinkedList<Passenger> sorted = sortedPassengers.returnInOrder();
+
+        cout << sorted.size() << endl;
+
+        for (int i = 0; i < sorted.size(); i++) {
+            Passenger tempPass = sorted.get(i);
+            cout << "gender: " << tempPass.getGender() << " ";
+            cout << "age:" << setfill(' ') << setw(5) << tempPass.getAge() << " ";
+            cout << "weight:" << setfill(' ') << setw(8) << tempPass.getWeight() << " ";
+            cout << "height:" << setfill(' ') << setw(8) << tempPass.getHeight() << " ";
+            cout << "MMR:" << setfill(' ') << setw(9) << tempPass.getMMR() << endl;
+        }
     }
 
 };
