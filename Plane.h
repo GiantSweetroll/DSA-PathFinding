@@ -64,6 +64,14 @@ public:
             sortedPassengers.insert(tempPass);
         }
 
+        // To make sorting easier, use a struct.
+        struct SeatToExit {
+            SeatToExit() {}
+            SeatToExit(SeatCoord seat, double dist) {this->seat = seat; this->dist = dist;}
+            SeatCoord seat;
+            double dist;
+        };
+
         // Default emergency exit is (0, 0)
 
         // Uncomment to print results for random generation
