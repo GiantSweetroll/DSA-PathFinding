@@ -1,2 +1,8 @@
-﻿  uaReg.cpp
+﻿  uaApp.cpp
+  uaID.cpp
+  uaMain.cpp
+  uaMainMenu.cpp
+  uaReg.cpp
+  uaSeat.cpp
+  Generating Code...
   UtilitarianAirlines.vcxproj -> H:\Projects\Project 7 - C++\DSA-PathFinding\UtilitarianAirlines\Debug\UtilitarianAirlines.exe

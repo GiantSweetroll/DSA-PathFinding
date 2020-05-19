@@ -34,6 +34,7 @@ private:
 	wxStaticBitmap* progress = nullptr;
 	wxStaticBitmap* currentPage = nullptr;
 	wxButton* btnNext = nullptr;
+	wxButton* btnBackStart = nullptr;
 	wxButton* btnNextStart = nullptr;
 	wxButton* btnNextReg = nullptr;
 	wxButton* btnBackReg = nullptr;

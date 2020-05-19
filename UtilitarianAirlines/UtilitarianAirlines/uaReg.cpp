@@ -37,19 +37,24 @@ void uaReg::initStartPage()
 	panelStart = new wxPanel(this, wxID_ANY);
 	wxBoxSizer* sizer = new wxBoxSizer(wxHORIZONTAL);
 	wxBoxSizer* txtBtnSizer = new wxBoxSizer(wxVERTICAL);
+	wxBoxSizer* btnSizer = new wxBoxSizer(wxHORIZONTAL);
 	stStart = new wxStaticText(panelStart, wxID_ANY, "Welcome to Utilitarian Airlines\n\nWe are here to provide the best seating for your flight's safety\n\nTo start registering to our services, please click the 'Next' button to proceed \n\n");
 	btnNextStart = new wxButton(panelStart, uaID::c_btnRegNextStart, "Next");
+	btnBackStart = new wxButton(panelStart, uaID::c_btnRegBackStart, "Main Menu");
 	logo = new wxStaticBitmap(panelStart, wxID_ANY, wxBitmap("logo.bmp", wxBITMAP_TYPE_BMP));
 
 	//Properties
 	stStart->SetFont(wxFont(25, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD));
 	btnNextStart->SetFont(wxFont(25, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD));
+	btnBackStart->SetFont(wxFont(25, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD));
 
 	//Add to sizer
 	sizer->Add(logo);
 	sizer->AddSpacer(50);
 	txtBtnSizer->Add(stStart);
-	txtBtnSizer->Add(btnNextStart);
+	btnSizer->Add(btnBackStart);
+	btnSizer->Add(btnNextStart);
+	txtBtnSizer->Add(btnSizer);
 	sizer->Add(txtBtnSizer);
 
 	panelStart->SetSizer(sizer);
@@ -124,11 +129,13 @@ void uaReg::initRegPage()
 	grid->Add(stSpecialNeeds);
 	grid->Add(cmbSpecialNeeds);
 	//Buttons
-	btnBox->Add(btnNextReg);
 	btnBox->Add(btnBackReg);
+	btnBox->Add(btnNextReg);
 	//Box
 	box->Add(grid);
+	box->AddSpacer(5);
 	box->Add(stDisclaimer);
+	box->AddSpacer(20);
 	box->Add(btnBox, wxSizerFlags().Expand());
 
 	panelReg->SetSizer(box);
@@ -252,7 +259,12 @@ void uaReg::onNextRegClick(wxCommandEvent& evt)
 
 void uaReg::onBackRegClick(wxCommandEvent& evt)
 {
-
+	progress->SetBitmap(wxBitmap("Linear_1.bmp", wxBITMAP_TYPE_BMP));
+	currentPage->SetBitmap(wxBitmap("banner_start.bmp", wxBITMAP_TYPE_BMP));
+	mainSizer->Replace(panelReg, panelStart);
+	panelReg->Hide();
+	panelStart->Show();
+	this->Layout();
 }
 
 void uaReg::onBackSeatClick(wxCommandEvent& evt)
