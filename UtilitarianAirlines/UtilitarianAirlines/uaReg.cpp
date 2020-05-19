@@ -15,6 +15,7 @@ uaReg::uaReg(wxWindow* parent) : wxPanel(parent, wxID_ANY)
 	currentPage = new wxStaticBitmap(this, wxID_ANY, wxBitmap("banner_start.bmp", wxBITMAP_TYPE_BMP));
 	initStartPage();
 	initRegPage();
+	initSeatPage();
 	mainSizer = new wxBoxSizer(wxVERTICAL);
 
 	//Add to sizer
@@ -153,7 +154,8 @@ void uaReg::initSeatPage()
 	wxStaticText* st2 = new wxStaticText(panelSeat, wxID_ANY, "Please enjoy your flight,\nThank you for choosing");
 	wxStaticText* st3 = new wxStaticText(panelSeat, wxID_ANY, "Utilitarian Airlines");
 	wxStaticText* st4 = new wxStaticText(panelSeat, wxID_ANY, "Remember to always check your seat because it might change according to others, we will be sending you an email of the final seating 3 days before the flight. Thank you.");
-	wxGridSizer* seating = nullptr;	//TODO: replace this with the generate seating sizer method.
+	int exits[][3] = { {0, 1, 0}, {5, 2, 1} };
+	wxGridSizer* seating = uaMethods::getSeatingSizer(panelSeat, 8, 3, 3, exits);
 	wxBoxSizer* leftBox = new wxBoxSizer(wxVERTICAL);
 	wxBoxSizer* btnBox = new wxBoxSizer(wxHORIZONTAL);
 	wxBoxSizer* box = new wxBoxSizer(wxHORIZONTAL);
@@ -175,6 +177,8 @@ void uaReg::initSeatPage()
 	box->AddSpacer(20);
 	box->Add(seating);
 
+	panelSeat->SetSizer(box);
+	panelSeat->Layout();
 }
 
 void uaReg::initOldRegPage()
@@ -254,7 +258,12 @@ void uaReg::onNextStartClick(wxCommandEvent& evt)
 
 void uaReg::onNextRegClick(wxCommandEvent& evt)
 {
-
+	progress->SetBitmap(wxBitmap("Linear_3.bmp", wxBITMAP_TYPE_BMP));
+	currentPage->SetBitmap(wxBitmap("banner_Seat.bmp", wxBITMAP_TYPE_BMP));
+	mainSizer->Replace(panelReg, panelSeat);
+	panelReg->Hide();
+	panelSeat->Show();
+	this->Layout();
 }
 
 void uaReg::onBackRegClick(wxCommandEvent& evt)

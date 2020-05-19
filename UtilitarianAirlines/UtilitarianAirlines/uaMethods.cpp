@@ -14,7 +14,7 @@ wxGridSizer* uaMethods::getSeatingSizer(wxWindow* parent, int seatRows, int left
 	//Note: exits[][rowNumber, amount, pos(0=left, 1=right)]
 
 	//Initialization
-	wxGridSizer* grid = new wxGridSizer(left + right + 1, 5, 0);
+	wxGridSizer* grid = new wxGridSizer(left + right + 1, 1, 0);
 	int spaceBetweenExits = left + right - 1;		//When there's two exits in one row
 	int rowChar = 65;		//A -> Row alphabet
 	int curExit = 0;
@@ -30,30 +30,20 @@ wxGridSizer* uaMethods::getSeatingSizer(wxWindow* parent, int seatRows, int left
 				wxStaticBitmap* exit = new wxStaticBitmap(parent, wxID_ANY, wxBitmap("exit.bmp", wxBITMAP_TYPE_BMP));
 				if (exits[curExit][2] == 0)
 				{
-					grid->Add(exit, wxSizerFlags().Expand().Center());
+					grid->Add(exit, wxSizerFlags().Expand());
+					uaMethods::insertFillers(grid, left + right);
 				}
 				else
 				{
-					for (int i = 0; i < left; i++)
-					{
-						grid->Add(1, 1, wxSizerFlags().Expand());
-					}
-					grid->Add(1, 1, wxSizerFlags().Expand());
-					for (int i = 1; i < right; i++)
-					{
-						grid->Add(1, 1, wxSizerFlags().Expand());
-					}
-					grid->Add(exit, wxSizerFlags().Expand().Center());
+					uaMethods::insertFillers(grid, left + right);
+					grid->Add(exit, wxSizerFlags().Expand());
 				}
 			}
 			else
 			{
-				//2 exits
-			}
-			{
 				wxStaticBitmap* exit1 = new wxStaticBitmap(parent, wxID_ANY, wxBitmap("exit.bmp", wxBITMAP_TYPE_BMP));
 				wxStaticBitmap* exit2 = new wxStaticBitmap(parent, wxID_ANY, wxBitmap("exit.bmp", wxBITMAP_TYPE_BMP));
-				grid->Add(exit1, wxSizerFlags().Expand().Center());
+				grid->Add(exit1, wxSizerFlags().Expand());
 				for (int i = 1; i < left; i++)
 				{
 					grid->Add(1, 1, wxSizerFlags().Expand());
@@ -63,7 +53,7 @@ wxGridSizer* uaMethods::getSeatingSizer(wxWindow* parent, int seatRows, int left
 				{
 					grid->Add(1, 1, wxSizerFlags().Expand());
 				}
-				grid->Add(exit2, wxSizerFlags().Expand().Center());
+				grid->Add(exit2, wxSizerFlags().Expand());
 			}
 			curExit++;
 		}
@@ -72,32 +62,63 @@ wxGridSizer* uaMethods::getSeatingSizer(wxWindow* parent, int seatRows, int left
 		int seatNum = 1;
 		for (int a = 0; a < left; a++)
 		{
-			wxStaticText* text = new wxStaticText(parent, wxID_ANY, to_string(seatNum));
-			grid->Add(text, wxSizerFlags().Expand().Center());
+			wxPanel* panel = new wxPanel(parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxSIMPLE_BORDER);
+			wxStaticText* text = new wxStaticText(panel, wxID_ANY, to_string(seatNum));
+			wxGridSizer* sizer = new wxGridSizer(1, 0, 0);
+			sizer->Add(text, wxSizerFlags().Center());
+			panel->SetSizer(sizer);
+			panel->Layout();
+			grid->Add(panel, wxSizerFlags().Expand());
 			seatNum++;
 		}
 		//Draw row alphabet
 		char s = rowChar;
-		grid->Add(new wxStaticText(parent, wxID_ANY, s), wxSizerFlags().Expand().Center());
+		grid->Add(new wxStaticText(parent, wxID_ANY, s), wxSizerFlags().Center());
 		//Draw right seating
 		for (int a = 0; a < right; a++)
 		{
-			wxStaticText* text = new wxStaticText(parent, wxID_ANY, to_string(seatNum));
-			grid->Add(text, wxSizerFlags().Expand().Center());
+			wxPanel* panel = new wxPanel(parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxSIMPLE_BORDER);
+			wxStaticText* text = new wxStaticText(panel, wxID_ANY, to_string(seatNum));
+			wxGridSizer* sizer = new wxGridSizer(1, 0, 0);
+			sizer->Add(text, wxSizerFlags().Center());
+			panel->SetSizer(sizer);
+			panel->Layout();
+			grid->Add(panel, wxSizerFlags().Expand());
 			seatNum++;
 		}
+		rowChar++;
 	}
 	//Draw exits at tail
-	if (exits[curExit][1] == 1)
+	if (exits[curExit][0] == seatRows)
 	{
-		wxStaticBitmap* exit = new wxStaticBitmap(parent, wxID_ANY, wxBitmap("exit.bmp", wxBITMAP_TYPE_BMP));
-		if (exits[curExit][2] == 0)
+		if (exits[curExit][1] == 1)
 		{
-			grid->Add(exit, wxSizerFlags().Expand().Center());
+			wxStaticBitmap* exit = new wxStaticBitmap(parent, wxID_ANY, wxBitmap("exit.bmp", wxBITMAP_TYPE_BMP));
+			if (exits[curExit][2] == 0)
+			{
+				grid->Add(exit);
+			}
+			else
+			{
+				for (int i = 0; i < left; i++)
+				{
+					grid->Add(1, 1, wxSizerFlags().Expand());
+				}
+				grid->Add(1, 1, wxSizerFlags().Expand());
+				for (int i = 1; i < right; i++)
+				{
+					grid->Add(1, 1, wxSizerFlags().Expand());
+				}
+				grid->Add(exit);
+			}
 		}
 		else
 		{
-			for (int i = 0; i < left; i++)
+			//2 exits
+			wxStaticBitmap* exit1 = new wxStaticBitmap(parent, wxID_ANY, wxBitmap("exit.bmp", wxBITMAP_TYPE_BMP));
+			wxStaticBitmap* exit2 = new wxStaticBitmap(parent, wxID_ANY, wxBitmap("exit.bmp", wxBITMAP_TYPE_BMP));
+			grid->Add(exit1, wxSizerFlags().Expand());
+			for (int i = 1; i < left; i++)
 			{
 				grid->Add(1, 1, wxSizerFlags().Expand());
 			}
@@ -106,27 +127,8 @@ wxGridSizer* uaMethods::getSeatingSizer(wxWindow* parent, int seatRows, int left
 			{
 				grid->Add(1, 1, wxSizerFlags().Expand());
 			}
-			grid->Add(exit, wxSizerFlags().Expand().Center());
+			grid->Add(exit2, wxSizerFlags().Expand());
 		}
-	}
-	else
-	{
-		//2 exits
-	}
-	{
-		wxStaticBitmap* exit1 = new wxStaticBitmap(parent, wxID_ANY, wxBitmap("exit.bmp", wxBITMAP_TYPE_BMP));
-		wxStaticBitmap* exit2 = new wxStaticBitmap(parent, wxID_ANY, wxBitmap("exit.bmp", wxBITMAP_TYPE_BMP));
-		grid->Add(exit1, wxSizerFlags().Expand().Center());
-		for (int i = 1; i < left; i++)
-		{
-			grid->Add(1, 1, wxSizerFlags().Expand());
-		}
-		grid->Add(1, 1, wxSizerFlags().Expand());
-		for (int i = 1; i < right; i++)
-		{
-			grid->Add(1, 1, wxSizerFlags().Expand());
-		}
-		grid->Add(exit2, wxSizerFlags().Expand().Center());
 	}
 
 	return grid;

@@ -16,8 +16,8 @@ public:
 		c_btnRegNextReg = 10008,
 		c_btnRegBackReg = 10009,
 		c_btnRegBackSeat = 10010,
-		c_btnRegMainMenu = 100011,
-		c_btnRegBackStart = 100012;
+		c_btnRegMainMenu = 10011,
+		c_btnRegBackStart = 10012;
 
 };
 
