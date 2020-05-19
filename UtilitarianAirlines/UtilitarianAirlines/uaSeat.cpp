@@ -1,4 +1,5 @@
 #include "uaSeat.h"
+using namespace std;
 
 uaSeat::uaSeat(wxWindow* parent) : wxPanel(parent, wxID_ANY)
 {
@@ -8,4 +9,13 @@ uaSeat::uaSeat(wxWindow* parent) : wxPanel(parent, wxID_ANY)
 uaSeat::~uaSeat()
 {
 
+}
+
+void uaSeat::initSeating(int seatRows, int left, int right, int exits[][3])
+{
+	//Note: exits[][rowNumber, amount, pos(0=left, 1=right)]
+
+	//Initialization
+	panelSeating = new wxPanel(this, wxID_ANY);
+	wxGridSizer* grid = uaMethods::getSeatingSizer(panelSeating, seatRows, left, right, exits);
 }

@@ -10,5 +10,6 @@ public:
 
 public:
 	static void insertFillers(wxGridSizer* sizer, int count);
+	static wxGridSizer* getSeatingSizer(wxWindow* parent, int seatRows, int left, int right, int exits[][3]);
 };
 

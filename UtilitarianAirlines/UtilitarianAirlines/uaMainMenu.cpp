@@ -13,13 +13,19 @@ uaMainMenu::~uaMainMenu()
 void uaMainMenu::Init()
 {
 	//Initialization
+	panelBackground = new uaCanvas(this, wxBitmap("background.bmp", wxBITMAP_TYPE_BMP));
 	this->InitPanelCenter();
-	wxGridSizer* grid = new wxGridSizer(1, 3, 0, 0);
+	wxGridSizer* grid = new wxGridSizer(1, 1, 0, 0);
+	wxGridSizer* innerGrid = new wxGridSizer(1, 3, 0, 0);
 	
 	//add to sizer
-	grid->Add(1, 1);
-	grid->Add(panelCenter, wxSizerFlags().Expand());
-	grid->Add(1, 1);
+	innerGrid->Add(1, 1);
+	innerGrid->Add(panelCenter, wxSizerFlags().Expand());
+	innerGrid->Add(1, 1);
+	grid->Add(panelBackground, wxSizerFlags().Expand());
+
+	panelBackground->SetSizer(innerGrid);
+	panelBackground->Layout();
 
 	this->SetSizer(grid);
 	this->Layout();
@@ -28,13 +34,10 @@ void uaMainMenu::Init()
 void uaMainMenu::InitPanelCenter()
 {
 	//Initialization
-	panelCenter = new wxPanel(this, wxID_ANY);
+	panelCenter = new wxPanel(panelBackground, wxID_ANY);
 	this->InitPanelTop();
 	this->InitPanelBelow();
 	wxGridSizer* grid = new wxGridSizer(2, 1, 0, 0);
-
-	//Properties
-	panelCenter->SetBackgroundColour(wxColour(135, 223, 154, 0));
 
 	//Add to sizer
 	grid->Add(panelTop, wxSizerFlags().Expand());
@@ -48,7 +51,7 @@ void uaMainMenu::InitPanelTop()
 {
 	//Initialization
 	panelTop = new wxPanel(panelCenter, wxID_ANY);
-	logo = new wxStaticBitmap(panelTop, wxID_ANY, wxBitmap("download.bmp", wxBITMAP_TYPE_BMP));
+	logo = new wxStaticBitmap(panelTop, wxID_ANY, wxBitmap("logo.bmp", wxBITMAP_TYPE_BMP));
 	wxGridSizer* grid = new wxGridSizer(1, 1, 0, 0);
 
 	//Add to sizer

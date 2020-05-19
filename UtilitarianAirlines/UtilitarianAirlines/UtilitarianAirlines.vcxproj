@@ -152,11 +152,23 @@
     <ResourceCompile Include="UtilitarianAirlines.rc" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="Background.bmp" />
+    <Image Include="banner_regis.bmp" />
+    <Image Include="banner_Seat.bmp" />
+    <Image Include="banner_start.bmp" />
     <Image Include="download.bmp" />
+    <Image Include="exit.bmp" />
+    <Image Include="Linear_1.bmp" />
+    <Image Include="linear_2.bmp" />
+    <Image Include="linear_3.bmp" />
+    <Image Include="Logo.bmp" />
+    <Image Include="logo_start.bmp" />
+    <Image Include="safety.bmp" />
     <Image Include="small.ico" />
     <Image Include="UtilitarianAirlines.ico" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="uaCanvas.cpp" />
     <ClCompile Include="uaID.cpp" />
     <ClCompile Include="uaMethods.cpp" />
     <ClCompile Include="uaApp.cpp" />
@@ -167,6 +179,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h" />
+    <ClInclude Include="uaCanvas.h" />
     <ClInclude Include="uaID.h" />
     <ClInclude Include="uaMethods.h" />
     <ClInclude Include="uaApp.h" />

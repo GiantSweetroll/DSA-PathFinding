@@ -8,7 +8,7 @@ wxBEGIN_EVENT_TABLE(uaMain, wxFrame)
 wxEND_EVENT_TABLE()
 
 
-uaMain::uaMain() : wxFrame(nullptr, wxID_ANY, "Seating - Utilitarian Airlines", wxPoint(50, 50), wxSize(800, 600))
+uaMain::uaMain() : wxFrame(nullptr, wxID_ANY, "Seating - Utilitarian Airlines", wxPoint(0, 0), wxSize(1920, 1080))
 {
 	//Initialization
 	mainMenu = new uaMainMenu(this);

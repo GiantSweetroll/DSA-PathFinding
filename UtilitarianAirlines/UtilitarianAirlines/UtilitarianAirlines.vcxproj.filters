@@ -29,6 +29,39 @@
     <Image Include="download.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="safety.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Background.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="banner_regis.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="banner_Seat.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="banner_start.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="exit.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Linear_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="linear_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="linear_3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Logo.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="logo_start.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="uaApp.cpp">
@@ -50,6 +83,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="uaSeat.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="uaCanvas.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -76,6 +112,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="uaSeat.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="uaCanvas.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -2,6 +2,7 @@
 
 #include "wx/wx.h"
 #include "uaID.h"
+#include "uaCanvas.h"
 
 class uaMainMenu : public wxPanel
 {
@@ -19,6 +20,7 @@ private:
 	wxPanel* panelTop = nullptr;
 	wxPanel* panelBelow = nullptr;
 	wxPanel* panelCenter = nullptr;
+	uaCanvas* panelBackground = nullptr;
 
 	//Methods
 private:
