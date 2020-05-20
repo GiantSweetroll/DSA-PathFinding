@@ -5,7 +5,6 @@ wxBEGIN_EVENT_TABLE(uaReg, wxPanel)
 	EVT_BUTTON(uaID::c_btnRegNextReg, onNextRegClick)
 	EVT_BUTTON(uaID::c_btnRegBackReg, onBackRegClick)
 	EVT_BUTTON(uaID::c_btnRegBackSeat, onBackSeatClick)
-	EVT_BUTTON(uaID::c_btnRegMainMenu, onMainMenuClick)
 wxEND_EVENT_TABLE()
 
 uaReg::uaReg(wxWindow* parent) : wxPanel(parent, wxID_ANY)
@@ -333,7 +332,12 @@ void uaReg::onBackRegClick(wxCommandEvent& evt)
 
 void uaReg::onBackSeatClick(wxCommandEvent& evt)
 {
-
+	progress->SetBitmap(wxBitmap("Linear_2.bmp", wxBITMAP_TYPE_BMP));
+	currentPage->SetBitmap(wxBitmap("banner_regis.bmp", wxBITMAP_TYPE_BMP));
+	mainSizer->Replace(panelSeat, panelReg);
+	panelSeat->Hide();
+	panelReg->Show();
+	this->Layout();
 }
 
 void uaReg::onMainMenuClick(wxCommandEvent& evt)

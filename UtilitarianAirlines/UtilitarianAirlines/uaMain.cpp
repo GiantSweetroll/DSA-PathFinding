@@ -6,6 +6,7 @@ wxBEGIN_EVENT_TABLE(uaMain, wxFrame)
 	EVT_BUTTON(uaID::c_btnMainExit, OnMainExitClicked)
 	EVT_BUTTON(uaID::c_btnRegBack, OnRegBackClicked)
 	EVT_BUTTON(uaID::c_btnRegBackStart, OnRegBackClicked)
+	EVT_BUTTON(uaID::c_btnRegMainMenu, OnRegBackClicked)
 wxEND_EVENT_TABLE()
 
 
