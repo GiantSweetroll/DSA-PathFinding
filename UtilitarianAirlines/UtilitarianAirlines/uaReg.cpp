@@ -18,6 +18,9 @@ uaReg::uaReg(wxWindow* parent) : wxPanel(parent, wxID_ANY)
 	initSeatPage();
 	mainSizer = new wxBoxSizer(wxVERTICAL);
 
+	//Properties
+	this->SetBackgroundColour(*wxWHITE);
+
 	//Add to sizer
 	mainSizer->Add(progress);
 	mainSizer->Add(currentPage);
@@ -45,9 +48,14 @@ void uaReg::initStartPage()
 	logo = new wxStaticBitmap(panelStart, wxID_ANY, wxBitmap("logo.bmp", wxBITMAP_TYPE_BMP));
 
 	//Properties
-	stStart->SetFont(wxFont(25, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD));
-	btnNextStart->SetFont(wxFont(25, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD));
-	btnBackStart->SetFont(wxFont(25, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD));
+	panelStart->SetBackgroundColour(*wxWHITE);
+	stStart->SetFont(wxFont(30, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD));
+	btnNextStart->SetFont(wxFont(30, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD));
+	btnBackStart->SetFont(wxFont(30, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD));
+	btnBackStart->SetBackgroundColour(wxColour(11, 83, 165, 255));
+	btnBackStart->SetForegroundColour(wxColour(255, 255, 255, 255));
+	btnNextStart->SetBackgroundColour(wxColour(11, 83, 165, 255));
+	btnNextStart->SetForegroundColour(wxColour(255, 255, 255, 255));
 
 	//Add to sizer
 	sizer->Add(logo);
@@ -87,14 +95,36 @@ void uaReg::initRegPage()
 	cmbSpecialNeeds = new wxComboBox(panelReg, wxID_ANY, "None");
 	btnNextReg = new wxButton(panelReg, uaID::c_btnRegNextReg, "Next");
 	btnBackReg = new wxButton(panelReg, uaID::c_btnRegBackReg, "Back");
+	wxFont basicFont(30, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD);
 
 	//Properties
+	panelReg->SetBackgroundColour(*wxWHITE);
+	stName->SetFont(basicFont);
+	tfFirstName->SetFont(basicFont);
 	tfFirstName->SetHint("First Name");
 	tfLastName->SetHint("Last Name");
+	tfLastName->SetFont(basicFont);
+	stEmail->SetFont(basicFont);
+	tfEmail->SetFont(basicFont);
+	stAge->SetFont(basicFont);
+	tfAge->SetFont(basicFont);
+	tfAge->SetValidator(wxTextValidator(wxFILTER_DIGITS));
+	stWeight->SetFont(basicFont);
+	tfWeight->SetFont(basicFont);
+	tfWeight->SetValidator(wxTextValidator(wxFILTER_NUMERIC));
+	stHeight->SetFont(basicFont);
+	tfHeight->SetFont(basicFont);
+	tfHeight->SetValidator(wxTextValidator(wxFILTER_NUMERIC));
+	stGender->SetFont(basicFont);
+	cmbSex->SetFont(basicFont);
 	cmbSex->SetEditable(false);
 	cmbSex->Append(_("Male"));
 	cmbSex->Append(_("Female"));
 	cmbSex->Append(_("Rather not specify"));
+	stDisclaimer->SetFont(basicFont);
+	stDisclaimer->SetForegroundColour(wxColour(253, 0, 0, 255));
+	stSpecialNeeds->SetFont(basicFont);
+	cmbSpecialNeeds->SetFont(basicFont);
 	cmbSpecialNeeds->SetEditable(false);
 	cmbSpecialNeeds->Append("None");
 	cmbSpecialNeeds->Append("Cannot walkness");
@@ -103,14 +133,20 @@ void uaReg::initRegPage()
 	cmbSpecialNeeds->Append("Sick");
 	cmbSpecialNeeds->Append("Muscle Atrophy");
 	cmbSpecialNeeds->Append("Bone Stuff");
+	btnNextReg->SetBackgroundColour(wxColour(11, 83, 165, 255));
+	btnNextReg->SetForegroundColour(wxColour(255, 255, 255, 255));
+	btnNextReg->SetFont(basicFont);
+	btnBackReg->SetBackgroundColour(wxColour(11, 83, 165, 255));
+	btnBackReg->SetForegroundColour(wxColour(255, 255, 255, 255));
+	btnBackReg->SetFont(basicFont);
 	panelReg->Hide();
 
 	//Add to sizer
 	//Grid
 	grid->Add(stName);
-	grid->Add(tfFirstName);
+	grid->Add(tfFirstName, wxSizerFlags().Expand());
 	uaMethods::insertFillers(grid, 4);
-	grid->Add(tfLastName);
+	grid->Add(tfLastName, wxSizerFlags().Expand());
 	uaMethods::insertFillers(grid, 3);
 	grid->Add(stAge);
 	grid->Add(tfAge);
@@ -119,7 +155,7 @@ void uaReg::initRegPage()
 	grid->Add(cmbSex);
 	uaMethods::insertFillers(grid, 3);
 	grid->Add(stEmail);
-	grid->Add(tfEmail);
+	grid->Add(tfEmail, wxSizerFlags().Expand());
 	uaMethods::insertFillers(grid, 3);
 	grid->Add(stHeight);
 	grid->Add(tfHeight);
@@ -153,14 +189,32 @@ void uaReg::initSeatPage()
 	wxStaticText* st1 = new wxStaticText(panelSeat, wxID_ANY, "According to your registration your seat will be at:");
 	wxStaticText* st2 = new wxStaticText(panelSeat, wxID_ANY, "Please enjoy your flight,\nThank you for choosing");
 	wxStaticText* st3 = new wxStaticText(panelSeat, wxID_ANY, "Utilitarian Airlines");
-	wxStaticText* st4 = new wxStaticText(panelSeat, wxID_ANY, "Remember to always check your seat because it might change according to others, we will be sending you an email of the final seating 3 days before the flight. Thank you.");
+	wxStaticText* st4 = new wxStaticText(panelSeat, wxID_ANY, "Remember to always check your seat because it might change\naccording to others, we will be sending you an email of the final\nseating 3 days before the flight.\nThank you.");
 	int exits[][3] = { {0, 1, 0}, {5, 2, 1} };
 	wxGridSizer* seating = uaMethods::getSeatingSizer(panelSeat, 8, 3, 3, exits);
 	wxBoxSizer* leftBox = new wxBoxSizer(wxVERTICAL);
 	wxBoxSizer* btnBox = new wxBoxSizer(wxHORIZONTAL);
 	wxBoxSizer* box = new wxBoxSizer(wxHORIZONTAL);
+	wxFont basicFont(30, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD);
 
 	//Properties
+	panelSeat->SetBackgroundColour(*wxWHITE);
+	st1->SetFont(basicFont);
+	st1->SetForegroundColour(wxColour(51, 108, 252, 255));
+	st2->SetFont(basicFont);
+	st2->SetForegroundColour(wxColour(51, 108, 252, 255));
+	st3->SetFont(wxFont(48, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD));
+	st3->SetForegroundColour(wxColour(51, 108, 252, 255));
+	st4->SetFont(basicFont);
+	st4->SetForegroundColour(wxColour(154, 176, 253, 255));
+	stSeatNum->SetFont(wxFont(60, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD));
+	stSeatNum->SetForegroundColour(wxColour(51, 108, 252, 255));
+	btnBackSeat->SetFont(basicFont);
+	btnBackSeat->SetForegroundColour(wxColour(255, 255, 255, 255));
+	btnBackSeat->SetBackgroundColour(wxColour(11, 83, 165, 255));
+	btnMainMenu->SetFont(basicFont);
+	btnMainMenu->SetForegroundColour(wxColour(255, 255, 255, 255));
+	btnMainMenu->SetBackgroundColour(wxColour(11, 83, 165, 255));
 	panelSeat->Hide();
 
 	//Add to sizer
@@ -172,6 +226,7 @@ void uaReg::initSeatPage()
 	leftBox->Add(st2);
 	leftBox->Add(st3);
 	leftBox->Add(st4);
+	leftBox->AddSpacer(10);
 	leftBox->Add(btnBox);
 	box->Add(leftBox);
 	box->AddSpacer(20);

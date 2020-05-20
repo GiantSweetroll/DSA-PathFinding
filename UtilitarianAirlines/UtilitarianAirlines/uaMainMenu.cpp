@@ -67,10 +67,23 @@ void uaMainMenu::InitPanelBelow()
 {
 	//Initialization
 	panelBelow = new wxPanel(panelCenter, wxID_ANY);
-	btnReg = new wxButton(panelBelow, uaID::c_btnMainReg, "Register");
-	btnSeat = new wxButton(panelBelow, uaID::c_btnMainSeat, "See Seating");
-	btnExit = new wxButton(panelBelow, uaID::c_btnMainExit, "Exit");
+	btnReg = new wxButton(panelBelow, uaID::c_btnMainReg, " Register ");
+	btnSeat = new wxButton(panelBelow, uaID::c_btnMainSeat, "View Seat");
+	btnExit = new wxButton(panelBelow, uaID::c_btnMainExit, "     Exit     ");
 	wxGridSizer* grid = new wxGridSizer(3, 1, 0, 0);
+	wxFont basicFont(48, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD);
+	wxColour basicColor(27, 167, 182, 255);
+
+	//Properties
+	btnReg->SetFont(basicFont);
+	btnReg->SetBackgroundColour(basicColor);
+	btnReg->SetForegroundColour(wxColour(255, 255, 255, 255));
+	btnSeat->SetFont(basicFont);
+	btnSeat->SetBackgroundColour(basicColor);
+	btnSeat->SetForegroundColour(wxColour(255, 255, 255, 255));
+	btnExit->SetFont(basicFont);
+	btnExit->SetBackgroundColour(basicColor);
+	btnExit->SetForegroundColour(wxColour(255, 255, 255, 255));
 
 	//Add to sizer
 	grid->Add(btnReg, wxSizerFlags().Centre());
