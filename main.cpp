@@ -13,12 +13,14 @@ int main() {
 
     srand(time(NULL) * (time(NULL) * 0.573238)); // Random seed for the randomizer
 
-    Plane p = Plane(7, 4);
+    Plane p = Plane(24, 6);
 
     p.addEmergencyExit(0, 0);
-    p.addEmergencyExit(0, 3);
+    p.addEmergencyExit(0, 5);
+    p.addEmergencyExit(23, 0);
+    p.addEmergencyExit(23, 5);
 
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < 30; i++) {
         p.addToPassengers(Passenger::randomPassenger());
     }
     p.addCustomPassenger(Passenger('m', 18, 69.0, 1.8, false, Passenger::NONE));
@@ -28,11 +30,9 @@ int main() {
     p.generate();
     p.printGeneratedPassengers();
 
-    // LinkedList<SeatCoord> mySeat = p.getCustomPassengerPos();
+    LinkedList<SeatCoord> mySeat = p.getCustomPassengerPos();
 
-    // cout << mySeat.get(0).toString() << endl;
-
-    // Passenger::printRandomPassengers(50);
+    cout << mySeat.get(0).toString() << endl;
 
     // p.savePassengerData("yes.txt");
 

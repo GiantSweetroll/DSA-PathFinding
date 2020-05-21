@@ -230,7 +230,7 @@ public:
 
         for (int i = 0; i < passengers.size(); i++) {
             // Looping through the length
-            cout << i << " ";
+            cout << setw(3) << i << " ";
             for (int j = 0; j < passengers.get(i).size(); j++) {
                 // Looping through the width
                 // cout << setfill(' ') << setw(5) << (round(passengers.get(i).get(j).getMMR() * 1000.0) / 1000.0) << " "; // rounded
@@ -251,6 +251,9 @@ public:
 
     void savePassengerData(string fileName) {
         ofstream fileOut(fileName);
+
+        fileOut << length << " " << width << "\n";
+        fileOut << "#" << "\n";
 
         // Passenger save format:
         // age gender weight height pregnant disabilities
@@ -315,11 +318,17 @@ public:
             switch (step) {
                 case 0:
                 // Add to custom passenger list
+                length = stoi(pass.get(0));
+                width = stoi(pass.get(1));
+                break;
+
+                case 1:
+                // Add to custom passenger list
                 customPassengerList.add(Passenger(pass.get(1).at(0), stoi(pass.get(0)), stod(pass.get(2)), stod(pass.get(3)),
                 (bool)stoi(pass.get(4)), (Passenger::Disabilities)stoi(pass.get(5))));
                 break;
 
-                case 1:
+                case 2:
                 // Add to general passengers
                 passengerList.add(Passenger(pass.get(1).at(0), stoi(pass.get(0)), stod(pass.get(2)), stod(pass.get(3)),
                 (bool)stoi(pass.get(4)), (Passenger::Disabilities)stoi(pass.get(5))));
