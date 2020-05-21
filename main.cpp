@@ -21,7 +21,7 @@ int main() {
     // p.generate();
     // p.printGeneratedPassengers();
 
-    p.printRandomPassengers(50);
+    Passenger::printRandomPassengers(50);
 
     cout << "Program execution complete." << endl;
 

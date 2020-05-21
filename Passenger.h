@@ -1,4 +1,5 @@
 
+#include <iomanip>
 #include "PolyFunc.h"
 #include "RandomUtil.h"
 #pragma once
@@ -65,6 +66,31 @@ public:
                 ((gender == 'f') && (rand() % 100 == 3)) ? true : false, // 3 out of 100 females are pregnant.
                 randomDisable()
             );
+    }
+
+    static void printRandomPassengers(int size) {
+
+        BST<Passenger> sortedPassengers = BST<Passenger>();
+
+        for (int i = 0; i < size; i++) {
+            Passenger tempPass = Passenger::randomPassenger();
+            sortedPassengers.insert(tempPass);
+        }
+
+        LinkedList<Passenger> sorted = sortedPassengers.returnInOrder();
+
+        cout << sorted.size() << endl;
+
+        for (int i = 0; i < sorted.size(); i++) {
+            Passenger tempPass = sorted.get(i);
+            cout << "gender: " << tempPass.getGender() << " ";
+            cout << "age:" << setfill(' ') << setw(5) << tempPass.getAge() << " ";
+            cout << "weight:" << setfill(' ') << setw(5) << tempPass.getWeight() << " ";
+            cout << "height:" << setfill(' ') << setw(7) << tempPass.getHeight() << " ";
+            cout << "MMR:" << setfill(' ') << setw(9) << tempPass.getMMR() << " ";
+            cout << "Preg:" << setfill(' ') << setw(3) << tempPass.isPregnant() << " ";
+            cout << "Disable:" << setfill(' ') << setw(5) << tempPass.getDisabilities() << endl;
+        }
     }
 
     Passenger() {}

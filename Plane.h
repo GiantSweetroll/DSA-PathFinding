@@ -1,7 +1,6 @@
 #include <stdlib.h>
 #include <memory>
 #include <iostream>
-#include <iomanip>
 #include <limits>
 #include <math.h>
 #include "LinkedList.h"
@@ -194,31 +193,6 @@ public:
         // Prints the exit points
         for (int i = 0; i < emergencyExits.size(); i++) {
             cout << "(" << emergencyExits.get(i).lengthAxis << ", " << emergencyExits.get(i).widthAxis << ")" << endl;
-        }
-    }
-
-    void printRandomPassengers(int size) {
-
-        BST<Passenger> sortedPassengers = BST<Passenger>();
-
-        for (int i = 0; i < size; i++) {
-            Passenger tempPass = Passenger::randomPassenger();
-            sortedPassengers.insert(tempPass);
-        }
-
-        LinkedList<Passenger> sorted = sortedPassengers.returnInOrder();
-
-        cout << sorted.size() << endl;
-
-        for (int i = 0; i < sorted.size(); i++) {
-            Passenger tempPass = sorted.get(i);
-            cout << "gender: " << tempPass.getGender() << " ";
-            cout << "age:" << setfill(' ') << setw(5) << tempPass.getAge() << " ";
-            cout << "weight:" << setfill(' ') << setw(5) << tempPass.getWeight() << " ";
-            cout << "height:" << setfill(' ') << setw(7) << tempPass.getHeight() << " ";
-            cout << "MMR:" << setfill(' ') << setw(9) << tempPass.getMMR() << " ";
-            cout << "Preg:" << setfill(' ') << setw(3) << tempPass.isPregnant() << " ";
-            cout << "Disable:" << setfill(' ') << setw(5) << tempPass.getDisabilities() << endl;
         }
     }
 
