@@ -214,9 +214,11 @@ public:
             Passenger tempPass = sorted.get(i);
             cout << "gender: " << tempPass.getGender() << " ";
             cout << "age:" << setfill(' ') << setw(5) << tempPass.getAge() << " ";
-            cout << "weight:" << setfill(' ') << setw(8) << tempPass.getWeight() << " ";
-            cout << "height:" << setfill(' ') << setw(8) << tempPass.getHeight() << " ";
-            cout << "MMR:" << setfill(' ') << setw(9) << tempPass.getMMR() << endl;
+            cout << "weight:" << setfill(' ') << setw(5) << tempPass.getWeight() << " ";
+            cout << "height:" << setfill(' ') << setw(7) << tempPass.getHeight() << " ";
+            cout << "MMR:" << setfill(' ') << setw(9) << tempPass.getMMR() << " ";
+            cout << "Preg:" << setfill(' ') << setw(3) << tempPass.isPregnant() << " ";
+            cout << "Disable:" << setfill(' ') << setw(5) << tempPass.getDisabilities() << endl;
         }
     }
 

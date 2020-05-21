@@ -16,14 +16,16 @@ public:
 
     // The enumeration for disabilities.
     enum Disabilities {
-    NONE=100,
-    HANDICAPPED=50,
-    BLIND=30,
-    MENTALILLNESS=95,
-    MILDSICKNESS=90,
-    HEAVYSICKNESS=60,
-    MUSCLEATROPHY=40
+        NONE = 100,
+        HANDICAPPED = 50,
+        BLIND = 30,
+        MENTALILLNESS = 90,
+        MILDSICKNESS = 95,
+        HEAVYSICKNESS = 60,
+        MUSCLEATROPHY = 40
     };
+
+    static const int disabilitiesCount = 7;
 
 private:
 
@@ -36,17 +38,32 @@ private:
     bool pregnant;
     Disabilities disabilities;
 
+    static Disabilities randomDisable() {
+        // 1 every 100 people has a disability, and its' randomized.
+        int rando = rand();
+        if (rando % 100 == 0) {
+            Disabilities disableArr[] = {HANDICAPPED, BLIND, MENTALILLNESS, HEAVYSICKNESS, MUSCLEATROPHY};
+            return disableArr[rand() % 5];
+        } else if (rando % 100 >= 95) {
+            // 5 every 100 people is mildly sick.
+            return MILDSICKNESS;
+        } else {
+            return NONE;
+        }
+    }
+
 public:
 
     // Static function to generate a random passenger based on normal distribution
     static Passenger randomPassenger() {
+        char gender = ((rand() % 2) == 1) ? 'm' : 'f';
         return Passenger(
-                'm',
+                gender,
                 (clamp(randomNormal(0.0, 75.0, 3.0), MIN_AGE, MAX_AGE)), // Random age with min 2 and max 8
                 (clamp(randomNormal(30.0, 110.0, 5.0), MIN_WEIGHT, MAX_WEIGHT)), // Random weight with min 47 and max 206
                 (clamp(randomNormal(120.0, 225.0, 4.0), MIN_HEIGHT, MAX_HEIGHT) / 100.0), // Random height with min 90 and max 210
-                false,
-                Passenger::Disabilities::NONE
+                ((gender == 'f') && (rand() % 100 == 3)) ? true : false, // 3 out of 100 females are pregnant.
+                randomDisable()
             );
     }
 
