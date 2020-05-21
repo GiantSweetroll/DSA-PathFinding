@@ -82,6 +82,7 @@ public:
     ~BST() { delete head; } // Default Deconstructor
 
     void insert(T value) {
+        size++;
         // Create a newNode variable with new value
         Node* newNode = new Node(value);
         // If head is null, then set head as new node
@@ -107,11 +108,10 @@ public:
         } else {
             beforeNode->right = newNode;
         }
-        
-        size++;
     }
 
     void del(T value) {
+        size--;
         Node* node = find(head, value);
         if (node == NULL)
             return;
@@ -155,7 +155,6 @@ public:
                 tempNode->right = NULL;
             }
         }
-        size--;
     }
 
     void printInOrder() {

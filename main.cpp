@@ -23,14 +23,18 @@ int main() {
     }
     p.addCustomPassenger(Passenger('m', 18, 69.0, 1.8, false, Passenger::NONE));
 
+    p.loadPassengerData("yes.txt");
+
     p.generate();
     p.printGeneratedPassengers();
 
-    LinkedList<SeatCoord> mySeat = p.getCustomPassengerPos();
+    // LinkedList<SeatCoord> mySeat = p.getCustomPassengerPos();
 
-    cout << mySeat.get(0).toString() << endl;
+    // cout << mySeat.get(0).toString() << endl;
 
     // Passenger::printRandomPassengers(50);
+
+    // p.savePassengerData("yes.txt");
 
     cout << "Program execution complete." << endl;
 
