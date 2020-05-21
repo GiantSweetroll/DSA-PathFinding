@@ -16,16 +16,22 @@ uaReg::uaReg(wxWindow* parent) : wxPanel(parent, wxID_ANY)
 	initRegPage();
 	initSeatPage();
 	mainSizer = new wxBoxSizer(wxVERTICAL);
+	wxBoxSizer* marginsLR = new wxBoxSizer(wxHORIZONTAL);
 
 	//Properties
 	this->SetBackgroundColour(*wxWHITE);
 
 	//Add to sizer
+	marginsLR->AddSpacer(50);
 	mainSizer->Add(progress);
 	mainSizer->Add(currentPage);
+	mainSizer->AddSpacer(15);
 	mainSizer->Add(panelStart, wxSizerFlags().Expand());
+	mainSizer->AddSpacer(30);
+	marginsLR->Add(mainSizer);
+	marginsLR->AddSpacer(50);
 
-	this->SetSizer(mainSizer);
+	this->SetSizer(marginsLR);
 	this->Layout();
 }
 
@@ -41,7 +47,7 @@ void uaReg::initStartPage()
 	wxBoxSizer* sizer = new wxBoxSizer(wxHORIZONTAL);
 	wxBoxSizer* txtBtnSizer = new wxBoxSizer(wxVERTICAL);
 	wxBoxSizer* btnSizer = new wxBoxSizer(wxHORIZONTAL);
-	stStart = new wxStaticText(panelStart, wxID_ANY, "Welcome to Utilitarian Airlines\n\nWe are here to provide the best seating for your flight's safety\n\nTo start registering to our services, please click the 'Next' button to proceed \n\n");
+	stStart = new wxStaticText(panelStart, wxID_ANY, "Welcome to Utilitarian Airlines\n\nWe are here to provide the best seating for your flight's safety\n\nTo start registering to our services, please click the 'Next' button\nto proceed \n\n");
 	btnNextStart = new wxButton(panelStart, uaID::c_btnRegNextStart, "Next");
 	btnBackStart = new wxButton(panelStart, uaID::c_btnRegBackStart, "Main Menu");
 	logo = new wxStaticBitmap(panelStart, wxID_ANY, wxBitmap("logo.bmp", wxBITMAP_TYPE_BMP));
@@ -83,7 +89,7 @@ void uaReg::initRegPage()
 	stHeight = new wxStaticText(panelReg, wxID_ANY, "Height (m)");
 	stWeight = new wxStaticText(panelReg, wxID_ANY, "Weight (Kg)");
 	stSpecialNeeds = new wxStaticText(panelReg, wxID_ANY, "Special Needs");
-	stDisclaimer = new wxStaticText(panelReg, wxID_ANY, "All information remains confidential and will only be used to determine the best seating for you.");
+	stDisclaimer = new wxStaticText(panelReg, wxID_ANY, "All information remains confidential and will only be used to determine the best seating\nfor you.");
 	tfFirstName = new wxTextCtrl(panelReg, wxID_ANY);
 	tfLastName = new wxTextCtrl(panelReg, wxID_ANY);
 	tfAge = new wxTextCtrl(panelReg, wxID_ANY);
@@ -190,7 +196,7 @@ void uaReg::initSeatPage()
 	wxStaticText* st3 = new wxStaticText(panelSeat, wxID_ANY, "Utilitarian Airlines");
 	wxStaticText* st4 = new wxStaticText(panelSeat, wxID_ANY, "Remember to always check your seat because it might change\naccording to others, we will be sending you an email of the final\nseating 3 days before the flight.\nThank you.");
 	int exits[][3] = { {0, 1, 0}, {5, 2, 1} };
-	wxGridSizer* seating = uaMethods::getSeatingSizer(panelSeat, 8, 3, 3, exits);
+	wxBoxSizer* seating = uaMethods::getSeatingSizer(panelSeat, 8, 3, 3, exits);
 	wxBoxSizer* leftBox = new wxBoxSizer(wxVERTICAL);
 	wxBoxSizer* btnBox = new wxBoxSizer(wxHORIZONTAL);
 	wxBoxSizer* box = new wxBoxSizer(wxHORIZONTAL);

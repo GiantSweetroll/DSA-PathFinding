@@ -62,6 +62,9 @@
     <Image Include="logo_start.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="logo.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="uaApp.cpp">

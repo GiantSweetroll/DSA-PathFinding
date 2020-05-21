@@ -47,6 +47,7 @@ private:
 	wxPanel* panelReg = nullptr;
 	wxPanel* panelSeat = nullptr;
 	wxBoxSizer* mainSizer = nullptr;
+	wxScrolledWindow* scroll = nullptr;
 
 	//Methods
 private:

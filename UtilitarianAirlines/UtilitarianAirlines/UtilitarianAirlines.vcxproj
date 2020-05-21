@@ -162,6 +162,7 @@
     <Image Include="linear_2.bmp" />
     <Image Include="linear_3.bmp" />
     <Image Include="Logo.bmp" />
+    <Image Include="logo.png" />
     <Image Include="logo_start.bmp" />
     <Image Include="safety.bmp" />
     <Image Include="small.ico" />

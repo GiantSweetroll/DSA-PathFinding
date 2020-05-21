@@ -13,6 +13,7 @@ wxEND_EVENT_TABLE()
 uaMain::uaMain() : wxFrame(nullptr, wxID_ANY, "Seating - Utilitarian Airlines", wxPoint(0, 0), wxSize(1920, 1080))
 {
 	//Initialization
+	wxInitAllImageHandlers();
 	mainMenu = new uaMainMenu(this);
 	reg = new uaReg(this);
 	sizer = new wxGridSizer(1, 1, 0, 0);

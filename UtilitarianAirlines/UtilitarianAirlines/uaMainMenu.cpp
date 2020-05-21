@@ -51,7 +51,8 @@ void uaMainMenu::InitPanelTop()
 {
 	//Initialization
 	panelTop = new wxPanel(panelCenter, wxID_ANY);
-	logo = new wxStaticBitmap(panelTop, wxID_ANY, wxBitmap("logo.bmp", wxBITMAP_TYPE_BMP));
+	wxBitmap* logoImg = new wxBitmap("logo.png", wxBITMAP_TYPE_PNG);
+	logo = new wxStaticBitmap(panelTop, wxID_ANY, *logoImg);
 	wxGridSizer* grid = new wxGridSizer(1, 1, 0, 0);
 
 	//Add to sizer
