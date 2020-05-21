@@ -23,6 +23,8 @@ private:
     int length;
     int width;
 
+    bool generated = false;
+
     // To make sorting easier, use a struct.
     struct SeatToExit {
         SeatToExit() {}
@@ -52,6 +54,10 @@ public:
 
     int getSize() {
         return width * length;
+    }
+
+    bool isGenerated() {
+        return generated;
     }
 
     // This function generates a layout based on all of the custom passengers + all in the passengerTree.
@@ -145,6 +151,7 @@ public:
         for (int i = 0; i < orderedSeating.size(); i++) {
             passengers.get( orderedSeating.get(i).seat.lengthAxis ).update( orderedSeating.get(i).seat.widthAxis, orderedPassengerList.get(i) );
         }
+        generated = true;
     }
 
     void addToPassengers(Passenger passenger) {
@@ -159,6 +166,25 @@ public:
         for (int i = 0; i < passengers.size(); i++) {
             customPassengerList.add(passengers.get(i));
         }
+    }
+
+    LinkedList<SeatCoord> getCustomPassengerPos() {
+        LinkedList<SeatCoord> seats;
+        if (generated) {
+        for (int i = 0; i < passengers.size(); i++) {
+            // Looping through the length
+        for (int j = 0; j < passengers.get(i).size(); j++) {
+            // Looping through the width
+            for (int x = 0; x < customPassengerList.size(); x++) {
+                // Looping through custom passengers
+                if(passengers.get(i).get(j).getMMR() == customPassengerList.get(x).getMMR()) {
+                    seats.add(SeatCoord(i, j));
+                }
+            }
+        }
+        }
+        }
+        return seats;
     }
 
     void clearCustomPassengers() {

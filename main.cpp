@@ -21,9 +21,14 @@ int main() {
     for (int i = 0; i < 10; i++) {
         p.addToPassengers(Passenger::randomPassenger());
     }
+    p.addCustomPassenger(Passenger('m', 18, 69.0, 1.8, false, Passenger::NONE));
 
     p.generate();
     p.printGeneratedPassengers();
+
+    LinkedList<SeatCoord> mySeat = p.getCustomPassengerPos();
+
+    cout << mySeat.get(0).toString() << endl;
 
     // Passenger::printRandomPassengers(50);
 
