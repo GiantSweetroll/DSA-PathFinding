@@ -11,9 +11,9 @@ using namespace std;
 int main() {
     cout << "Hello, World!" << endl;
 
-    srand(time(NULL)); // Random seed for the randomizer
+    srand(time(NULL) * (time(NULL) * 0.573238)); // Random seed for the randomizer
 
-    Plane p = Plane(7, 4);
+    // Plane p = Plane(7, 4);
 
     // p.addEmergencyExit(0, 0);
     // p.addEmergencyExit(0, 3);
@@ -21,7 +21,7 @@ int main() {
     // p.generate();
     // p.printGeneratedPassengers();
 
-    p.printRandomPassengers(20);
+    // p.printRandomPassengers(20);
 
     cout << "Program execution complete." << endl;
 
