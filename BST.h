@@ -72,10 +72,11 @@ private:
         return;
     }
 
-public:
-
     // Main head variable
     Node* head = NULL;
+    int size = 0;
+
+public:
 
     BST() {} // Default Constructor
     ~BST() { delete head; } // Default Deconstructor
@@ -106,7 +107,8 @@ public:
         } else {
             beforeNode->right = newNode;
         }
-
+        
+        size++;
     }
 
     void del(T value) {
@@ -153,6 +155,7 @@ public:
                 tempNode->right = NULL;
             }
         }
+        size--;
     }
 
     void printInOrder() {
@@ -172,6 +175,10 @@ public:
         LinkedList<T> endList = *list;
         delete list;
         return endList;
+    }
+
+    int getSize() {
+        return size;
     }
 
 };

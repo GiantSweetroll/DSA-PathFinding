@@ -58,6 +58,7 @@ public:
     // Static function to generate a random passenger based on normal distribution
     static Passenger randomPassenger() {
         char gender = ((rand() % 2) == 1) ? 'm' : 'f';
+        // Note that the parameters in the randomNormal function Defines the upper bound and lower bound of the distribution.
         return Passenger(
                 gender,
                 (clamp(randomNormal(0.0, 75.0, 3.0), MIN_AGE, MAX_AGE)), // Random age with min 2 and max 8
@@ -93,7 +94,11 @@ public:
         }
     }
 
-    Passenger() {}
+    static Passenger generateEmpty() {
+        return Passenger();
+    }
+
+    Passenger() { mmr = -100.0; } // Empty passenger mmr
 
     Passenger(char gender, int age, double weightKilos, double heightMeters, bool pregnant, Disabilities disabilities) {
 

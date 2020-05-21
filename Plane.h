@@ -3,6 +3,7 @@
 #include <iostream>
 #include <limits>
 #include <math.h>
+#include <string>
 #include "LinkedList.h"
 #include "Passenger.h"
 #include "BST.h"
@@ -15,7 +16,8 @@ class Plane {
 
 private:
 
-    LinkedList<Passenger> customPassengers;
+    LinkedList<Passenger> passengerList; // Random passengers
+    LinkedList<Passenger> customPassengerList; // Custom passengers
     LinkedList<LinkedList<Passenger>> passengers;
     LinkedList<SeatCoord> emergencyExits;
     int length;
@@ -48,27 +50,39 @@ public:
         return width;
     }
 
+    int getSize() {
+        return width * length;
+    }
+
+    // This function generates a layout based on all of the custom passengers + all in the passengerTree.
+    // If the amount does not match the width * length of the plane, the seat will be EMPTY.
     void generate() {
         /* Generates width * length amount of passenger objects, and puts them in the LinkedList
         If invoked when already generated, regenerate all the passengers. If "you" is filled, then use it.
         */
 
+       // Clears the main seating layout
         passengers.clearList();
 
         BST<Passenger> sortedPassengers = BST<Passenger>();
 
         // Adds all the custom passengers to the BST
-        for (int i = 0; i < clamp(customPassengers.size(), 0, (length * width)); i++) {
-            sortedPassengers.insert(customPassengers.get(i));
+        for (int i = 0; i < clamp(customPassengerList.size(), 0, (length * width)); i++) {
+            sortedPassengers.insert(customPassengerList.get(i));
         }
 
-        // Generates all the random passengers and sort them in the BST.
-
-        for (int i = 0; i < clamp(((length * width) - customPassengers.size()), 0, (length * width)); i++) {
-            // Note that the parameters in the randomNormal function Defines the upper bound and lower bound of the distribution.
-            Passenger tempPass = Passenger::randomPassenger();
-            sortedPassengers.insert(tempPass);
+        // Adds all of the passengers into the BST. If overflows, then just insert until full.
+        for (int i = 0; i < clamp(passengerList.size(), 0, (length * width) - sortedPassengers.getSize()); i++) {
+            sortedPassengers.insert(passengerList.get(i));
         }
+
+        // Generates the rest as "empty" passengers.
+        int emptySeats = (length * width) - sortedPassengers.getSize();
+        for (int i = 0; i < clamp(emptySeats, 0, numeric_limits<int>().max()); i++) {
+            sortedPassengers.insert(Passenger());
+        }
+        cout << sortedPassengers.getSize() << endl;
+
         // End of generation
 
         // If there is no emergency exits added, add a default one at (0, 0)
@@ -133,18 +147,22 @@ public:
         }
     }
 
-    void addCustomPasengers(Passenger passenger) {
-        customPassengers.add(passenger);
+    void addToPassengers(Passenger passenger) {
+        passengerList.add(passenger);
+    }
+
+    void addCustomPassenger(Passenger passenger) {
+        customPassengerList.add(passenger);
     }
 
     void addCustomPassengers(LinkedList<Passenger> passengers) {
         for (int i = 0; i < passengers.size(); i++) {
-            customPassengers.add(passengers.get(i));
+            customPassengerList.add(passengers.get(i));
         }
     }
 
     void clearCustomPassengers() {
-        customPassengers.clearList();
+        customPassengerList.clearList();
     }
 
     bool addEmergencyExit(int lengthAxis, int widthAxis) {
@@ -183,7 +201,8 @@ public:
             for (int j = 0; j < passengers.get(i).size(); j++) {
                 // Looping through the width
                 // cout << setfill(' ') << setw(5) << (round(passengers.get(i).get(j).getMMR() * 1000.0) / 1000.0) << " "; // rounded
-                cout << setfill(' ') << setw(9) << passengers.get(i).get(j).getMMR() << " "; // not rounded
+                string passStr = (passengers.get(i).get(j).getMMR() == -100.0) ? "EMPTY" : to_string(passengers.get(i).get(j).getMMR());
+                cout << setfill(' ') << setw(9) << passStr << " "; // not rounded
             }
             cout << endl;
         }
