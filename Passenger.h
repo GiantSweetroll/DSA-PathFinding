@@ -1,6 +1,14 @@
 
 #include "PolyFunc.h"
+#include "RandomUtil.h"
 #pragma once
+
+#define MIN_AGE 8
+#define MAX_AGE 83
+#define MIN_WEIGHT 37
+#define MAX_WEIGHT 206
+#define MIN_HEIGHT 90
+#define MAX_HEIGHT 210
 
 class Passenger {
 
@@ -29,6 +37,18 @@ private:
     Disabilities disabilities;
 
 public:
+
+    // Static function to generate a random passenger based on normal distribution
+    static Passenger randomPassenger() {
+        return Passenger(
+                'm',
+                (clamp(randomNormal(0.0, 75.0, 3.0), MIN_AGE, MAX_AGE)), // Random age with min 2 and max 8
+                (clamp(randomNormal(30.0, 110.0, 5.0), MIN_WEIGHT, MAX_WEIGHT)), // Random weight with min 47 and max 206
+                (clamp(randomNormal(120.0, 225.0, 4.0), MIN_HEIGHT, MAX_HEIGHT) / 100.0), // Random height with min 90 and max 210
+                false,
+                Passenger::Disabilities::NONE
+            );
+    }
 
     Passenger() {}
 

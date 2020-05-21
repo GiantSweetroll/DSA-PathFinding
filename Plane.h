@@ -8,13 +8,7 @@
 #include "Passenger.h"
 #include "BST.h"
 #include "SeatCoord.h"
-
-#define MIN_AGE 8
-#define MAX_AGE 83
-#define MIN_WEIGHT 37
-#define MAX_WEIGHT 206
-#define MIN_HEIGHT 90
-#define MAX_HEIGHT 210
+#include "RandomUtil.h"
 
 using namespace std;
 
@@ -36,11 +30,6 @@ private:
         double dist;
     };
 
-    int clamp(int val, int min, int max) {
-        if (val < min) { return min; }
-        else if (val > max) { return max; }
-        else { return val; }
-    }
 
 public:
 
@@ -77,14 +66,8 @@ public:
         // Generates all the random passengers and sort them in the BST.
 
         for (int i = 0; i < clamp(((length * width) - customPassengers.size()), 0, (length * width)); i++) {
-            Passenger tempPass = Passenger(
-                'm',
-                ((rand() % (MAX_AGE - MIN_AGE)) + MIN_AGE), // Random age with min 2 and max 85
-                ((rand() % (MAX_WEIGHT - MIN_WEIGHT)) + MIN_WEIGHT), // Random weight with min 47 and max 206
-                (((rand() % (MAX_HEIGHT - MIN_HEIGHT)) + MIN_HEIGHT) / 100.0), // Random height with min 90 and max 210
-                false,
-                Passenger::Disabilities::NONE
-            );
+            // Note that the parameters in the randomNormal function Defines the upper bound and lower bound of the distribution.
+            Passenger tempPass = Passenger::randomPassenger();
             sortedPassengers.insert(tempPass);
         }
         // End of generation
@@ -219,14 +202,7 @@ public:
         BST<Passenger> sortedPassengers = BST<Passenger>();
 
         for (int i = 0; i < size; i++) {
-            Passenger tempPass = Passenger(
-                'm',
-                ((rand() % (MAX_AGE - MIN_AGE)) + MIN_AGE), // Random age with min 2 and max 85
-                ((rand() % (MAX_WEIGHT - MIN_WEIGHT)) + MIN_WEIGHT), // Random weight with min 47 and max 206
-                (((rand() % (MAX_HEIGHT - MIN_HEIGHT)) + MIN_HEIGHT) / 100.0), // Random height with min 90 and max 210
-                false,
-                Passenger::Disabilities::NONE
-            );
+            Passenger tempPass = Passenger::randomPassenger();
             sortedPassengers.insert(tempPass);
         }
 
