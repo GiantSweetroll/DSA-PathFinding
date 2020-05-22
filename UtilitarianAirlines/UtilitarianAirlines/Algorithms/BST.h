@@ -1,9 +1,8 @@
+#pragma once
 #include <iostream>
 #include "LinkedList.h"
 
 using namespace std;
-
-#pragma once
 
 // Template so that the BST doesn't apply for only ints and floats.
 // For other non-number objects, a < and > override is needed in the class, to allow proper adding to the BST.

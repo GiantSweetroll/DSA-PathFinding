@@ -1,8 +1,8 @@
-
+#pragma once
 #include <iomanip>
 #include "PolyFunc.h"
 #include "RandomUtil.h"
-#pragma once
+#include "BST.h"
 
 #define MIN_AGE 8
 #define MAX_AGE 83

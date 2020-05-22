@@ -1,7 +1,6 @@
+#pragma once
 #include "LinkedList.h"
 #include <math.h>
-
-#pragma once
 
 // This class is to store a one variable mathematical polynomial function, then use it to calculate the value of f(x).
 class PolyFunc {
