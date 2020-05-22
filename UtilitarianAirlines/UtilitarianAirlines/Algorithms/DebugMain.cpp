@@ -23,7 +23,7 @@ int main() {
     for (int i = 0; i < 30; i++) {
         p.addToPassengers(Passenger::randomPassenger());
     }
-    p.addCustomPassenger(Passenger('m', 18, 69.0, 1.8, false, Passenger::NONE));
+    p.addCustomPassenger(Passenger(Passenger::MALE, 18, 69.0, 1.8, false, Passenger::NONE));
 
     p.loadPassengerData("PassengerData");
 

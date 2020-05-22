@@ -26,13 +26,19 @@ public:
         MUSCLEATROPHY = 40
     };
 
+    enum Gender {
+        MALE,
+        FEMALE,
+        OTHER
+    };
+
     static const int disabilitiesCount = 7;
 
 private:
 
     double mmr;
 
-    char gender;
+    Gender gender;
     int age;
     double weight;
     double height;
@@ -57,14 +63,14 @@ public:
 
     // Static function to generate a random passenger based on normal distribution
     static Passenger randomPassenger() {
-        char gender = ((rand() % 2) == 1) ? 'm' : 'f';
+        Gender gender = ((rand() % 2) == 1) ? MALE : FEMALE;
         // Note that the parameters in the randomNormal function Defines the upper bound and lower bound of the distribution.
         return Passenger(
                 gender,
                 (clamp(randomNormal(0.0, 75.0, 3.0), MIN_AGE, MAX_AGE)), // Random age with min 2 and max 8
                 (clamp(randomNormal(30.0, 110.0, 5.0), MIN_WEIGHT, MAX_WEIGHT)), // Random weight with min 47 and max 206
                 (clamp(randomNormal(120.0, 225.0, 4.0), MIN_HEIGHT, MAX_HEIGHT) / 100.0), // Random height with min 90 and max 210
-                ((gender == 'f') && (rand() % 100 == 3)) ? true : false, // 3 out of 100 females are pregnant.
+                ((gender == FEMALE) && (rand() % 100 == 3)) ? true : false, // 3 out of 100 females are pregnant.
                 randomDisable()
             );
     }
@@ -100,7 +106,7 @@ public:
 
     Passenger() { mmr = -100.0; } // Empty passenger mmr
 
-    Passenger(char gender, int age, double weightKilos, double heightMeters, bool pregnant, Disabilities disabilities) {
+    Passenger(Gender gender, int age, double weightKilos, double heightMeters, bool pregnant, Disabilities disabilities) {
 
         this->gender = gender;
         this->age = age;
@@ -124,15 +130,15 @@ public:
         mmr = 1;
 
         double BMI = weightKilos / (heightMeters * heightMeters);
-        if (gender == 'f') {
+        if (gender == FEMALE) {
             mmr *= femaleBMI.calculate(BMI) * femaleAge.calculate(age/10.0);
-        } else if (gender == 'm') {
+        } else if (gender == MALE) {
             mmr *= maleBMI.calculate(BMI) * maleAge.calculate(age/10.0);
         } else {
             mmr = 0;
         }
 
-        mmr *= (pregnant ? 0.75 : 1.0) * (disabilities / 100.0);
+        mmr *= ((gender == FEMALE && pregnant) ? 0.75 : 1.0) * (disabilities / 100.0);
 
     }
 
@@ -140,7 +146,7 @@ public:
         return mmr;
     }
 
-    char getGender() {
+    Gender getGender() {
         return gender;
     }
 

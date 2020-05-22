@@ -333,13 +333,13 @@ public:
 
                 case 1:
                 // Add to custom passenger list
-                customPassengerList.add(Passenger(pass.get(1).at(0), stoi(pass.get(0)), stod(pass.get(2)), stod(pass.get(3)),
+                customPassengerList.add(Passenger(static_cast<Passenger::Gender>(stoi(pass.get(1))), stoi(pass.get(0)), stod(pass.get(2)), stod(pass.get(3)),
                 (bool)stoi(pass.get(4)), (Passenger::Disabilities)stoi(pass.get(5))));
                 break;
 
                 case 2:
                 // Add to general passengers
-                passengerList.add(Passenger(pass.get(1).at(0), stoi(pass.get(0)), stod(pass.get(2)), stod(pass.get(3)),
+                passengerList.add(Passenger(static_cast<Passenger::Gender>(stoi(pass.get(1))), stoi(pass.get(0)), stod(pass.get(2)), stod(pass.get(3)),
                 (bool)stoi(pass.get(4)), (Passenger::Disabilities)stoi(pass.get(5))));
                 break;
 
