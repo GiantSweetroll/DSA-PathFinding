@@ -25,7 +25,7 @@ int main() {
     }
     p.addCustomPassenger(Passenger('m', 18, 69.0, 1.8, false, Passenger::NONE));
 
-    p.loadPassengerData("yes.txt");
+    p.loadPassengerData("PassengerData");
 
     p.generate();
     p.printGeneratedPassengers();
@@ -34,7 +34,7 @@ int main() {
 
     cout << mySeat.get(0).toString() << endl;
 
-    // p.savePassengerData("yes.txt");
+    // p.savePassengerData("PassengerData");
 
     cout << "Program execution complete." << endl;
 
