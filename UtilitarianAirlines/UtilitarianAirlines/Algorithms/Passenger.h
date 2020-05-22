@@ -163,6 +163,14 @@ public:
     Disabilities getDisabilities() {
         return disabilities;
     }
+
+    // This method detects whether the passenger is an "empty" passenger
+    bool isEmpty() {
+	if (mmr == -100.0) {
+		return true;
+	}
+	return false;
+    }
     
     // Custom methods
 
