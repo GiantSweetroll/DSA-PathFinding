@@ -6,6 +6,7 @@
 
 using namespace std;
 class Rand {
+public:
 // Generate a random number.
 static int randomRangeNum(int min, int max) {
     return ((rand() % (max - min)) + min);
