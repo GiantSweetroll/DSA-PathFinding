@@ -6,7 +6,7 @@ struct SeatCoord {
 
     SeatCoord() {}
 
-    SeatCoord(int lengthAxis, int widthAxis) {
+    SeatCoord(double lengthAxis, double widthAxis) {
         this->lengthAxis = lengthAxis;
         this->widthAxis = widthAxis;
     }
@@ -15,6 +15,6 @@ struct SeatCoord {
         return ("(" + to_string(lengthAxis) + ", " + to_string(widthAxis) + ")");
     }
 
-    int lengthAxis;
-    int widthAxis;
+    double lengthAxis;
+    double widthAxis;
 };

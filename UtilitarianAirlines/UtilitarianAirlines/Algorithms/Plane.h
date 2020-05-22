@@ -161,6 +161,15 @@ public:
         generated = true;
     }
 
+    LinkedList<LinkedList<Passenger>> getPassengerLayout() {
+        // Gets all of the passenger in layout, if already generated.
+        LinkedList<LinkedList<Passenger>> pass;
+        if (generated) {
+            return passengers;
+        }
+        return pass;
+    }
+
     void addToPassengers(Passenger passenger) {
         passengerList.add(passenger);
     }
@@ -198,19 +207,19 @@ public:
         customPassengerList.clearList();
     }
 
-    bool addEmergencyExit(int lengthAxis, int widthAxis) {
-        if ((lengthAxis < 0 || lengthAxis > length) || (widthAxis < 0 || widthAxis > width)) {
-            return false;
-        }
-
+    void addEmergencyExit(int lengthAxis, int widthAxis) {
         emergencyExits.add(SeatCoord(lengthAxis, widthAxis));
-        return true;
+    }
+
+    LinkedList<SeatCoord> getEmergencyExits() {
+        return emergencyExits;
     }
 
     void clearEmergencyExit() {
         emergencyExits.clearList();
     }
 
+    // Debug Stuff
     void printGeneratedPassengers() {
 
         cout << "Length V, Width ->" << endl;
@@ -247,8 +256,8 @@ public:
         }
     }
 
-    // File parser methods
 
+    // File parser methods
     void savePassengerData(string fileName) {
         ofstream fileOut(fileName);
 
