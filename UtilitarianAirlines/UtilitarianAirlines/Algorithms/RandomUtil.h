@@ -5,7 +5,7 @@
 #include <iostream>
 
 using namespace std;
-
+namespace Rand {
 // Generate a random number.
 int randomRangeNum(int min, int max) {
     return ((rand() % (max - min)) + min);
@@ -32,3 +32,4 @@ double randomNormalNum(double min, double max, double multiplier) {
 
     return val / multiplier;
 }
+};
