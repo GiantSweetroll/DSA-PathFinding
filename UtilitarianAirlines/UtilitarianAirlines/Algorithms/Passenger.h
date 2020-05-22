@@ -64,12 +64,12 @@ public:
     // Static function to generate a random passenger based on normal distribution
     static Passenger randomPassenger() {
         Gender gender = ((rand() % 2) == 1) ? MALE : FEMALE;
-        // Note that the parameters in the randomNormal function Defines the upper bound and lower bound of the distribution.
+        // Note that the parameters in the randomNormalNum function Defines the upper bound and lower bound of the distribution.
         return Passenger(
                 gender,
-                (clamp(randomNormal(0.0, 75.0, 3.0), MIN_AGE, MAX_AGE)), // Random age with min 2 and max 8
-                (clamp(randomNormal(30.0, 110.0, 5.0), MIN_WEIGHT, MAX_WEIGHT)), // Random weight with min 47 and max 206
-                (clamp(randomNormal(120.0, 225.0, 4.0), MIN_HEIGHT, MAX_HEIGHT) / 100.0), // Random height with min 90 and max 210
+                (clampNum(randomNormalNum(0.0, 75.0, 3.0), MIN_AGE, MAX_AGE)), // Random age with min 2 and max 8
+                (clampNum(randomNormalNum(30.0, 110.0, 5.0), MIN_WEIGHT, MAX_WEIGHT)), // Random weight with min 47 and max 206
+                (clampNum(randomNormalNum(120.0, 225.0, 4.0), MIN_HEIGHT, MAX_HEIGHT) / 100.0), // Random height with min 90 and max 210
                 ((gender == FEMALE) && (rand() % 100 == 3)) ? true : false, // 3 out of 100 females are pregnant.
                 randomDisable()
             );
