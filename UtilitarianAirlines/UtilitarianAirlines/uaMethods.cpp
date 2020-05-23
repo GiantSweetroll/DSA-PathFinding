@@ -9,13 +9,13 @@ void uaMethods::insertFillers(wxGridSizer* sizer, int count)
 	}
 }
 
-wxBoxSizer* uaMethods::getSeatingSizer(wxWindow* parent, int seatRows, int left, int right, int exits[][3])
+wxBoxSizer* uaMethods::getSeatingSizer(wxWindow* parent, int seatRows, int left, int middle, int right, int exits[][3])
 {
 	//Note: exits[][rowNumber, amount, pos(0=left, 1=right)]
 
 	//Initialization
 	wxBoxSizer* sizer = new wxBoxSizer(wxVERTICAL);
-	int spaceBetweenExits = left + right - 1;		//When there's two exits in one row
+	int spaceBetweenExits = left + middle + right;		//When there's two exits in one row
 	int rowChar = 65;		//A -> Row alphabet
 	int curExit = 0;
 
@@ -25,7 +25,7 @@ wxBoxSizer* uaMethods::getSeatingSizer(wxWindow* parent, int seatRows, int left,
 		//Check if exits needs to be made
 		if (i == exits[curExit][0])
 		{
-			wxGridSizer* exitSizer = new wxGridSizer(left + right + 1, 1, 0);
+			wxGridSizer* exitSizer = new wxGridSizer(left + middle + right + 2, 1, 0);
 			if (exits[curExit][1] == 1)
 			{
 				wxStaticBitmap* exit = new wxStaticBitmap(parent, wxID_ANY, wxBitmap("exit.bmp", wxBITMAP_TYPE_BMP));
@@ -53,7 +53,7 @@ wxBoxSizer* uaMethods::getSeatingSizer(wxWindow* parent, int seatRows, int left,
 		}
 
 		//Draw left seating
-		wxGridSizer* seatsSizer = new wxGridSizer(left + right + 1, 1, 0);
+		wxGridSizer* seatsSizer = new wxGridSizer(left + middle + right + 2, 1, 0);
 		wxFont* seatFont = new wxFont(35, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD);
 		int seatNum = 1;
 		for (int a = 0; a < left; a++)
@@ -74,6 +74,25 @@ wxBoxSizer* uaMethods::getSeatingSizer(wxWindow* parent, int seatRows, int left,
 		alphabet->SetFont(*seatFont);
 		alphabet->SetForegroundColour(wxColour(0, 102, 255, 255));
 		seatsSizer->Add(alphabet, wxSizerFlags().Center());
+		//Draw middle seating
+		for (int a = 0; a < middle; a++)
+		{
+			wxPanel* panel = new wxPanel(parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxSIMPLE_BORDER);
+			wxStaticText* text = new wxStaticText(panel, wxID_ANY, to_string(seatNum));
+			wxGridSizer* sizer = new wxGridSizer(1, 0, 0);
+			text->SetFont(*seatFont);
+			sizer->Add(text, wxSizerFlags().Center());
+			panel->SetSizer(sizer);
+			panel->Layout();
+			seatsSizer->Add(panel, wxSizerFlags().Expand());
+			seatNum++;
+		}
+		//Draw row alphabet again
+		s = rowChar;
+		wxStaticText* alphabet2 = new wxStaticText(parent, wxID_ANY, s);
+		alphabet2->SetFont(*seatFont);
+		alphabet2->SetForegroundColour(wxColour(0, 102, 255, 255));
+		seatsSizer->Add(alphabet2, wxSizerFlags().Center());
 		//Draw right seating
 		for (int a = 0; a < right; a++)
 		{

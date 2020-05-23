@@ -18,6 +18,6 @@ private:
 
 	//Methods
 private:
-	void initSeating(int seatRows, int left, int right, int exits[][3]);
+	void initSeating(int seatRows, int left, int middle, int right, int exits[][3]);
 };
 

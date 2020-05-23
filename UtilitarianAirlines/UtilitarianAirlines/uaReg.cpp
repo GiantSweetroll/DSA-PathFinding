@@ -204,7 +204,7 @@ void uaReg::initSeatPage()
 	wxStaticText* st3 = new wxStaticText(panelSeat, wxID_ANY, "Utilitarian Airlines");
 	wxStaticText* st4 = new wxStaticText(panelSeat, wxID_ANY, "Remember to always check your seat because it might change\naccording to others, we will be sending you an email of the final\nseating 3 days before the flight.\nThank you.");
 	int exits[][3] = { {0, 1, 0}, {5, 2, 1} };
-	wxBoxSizer* seating = uaMethods::getSeatingSizer(panelSeat, 8, 3, 3, exits);
+	wxBoxSizer* seating = uaMethods::getSeatingSizer(panelSeat, 8, 3, 4, 3, exits);
 	wxBoxSizer* leftBox = new wxBoxSizer(wxVERTICAL);
 	wxBoxSizer* btnBox = new wxBoxSizer(wxHORIZONTAL);
 	wxBoxSizer* box = new wxBoxSizer(wxHORIZONTAL);
