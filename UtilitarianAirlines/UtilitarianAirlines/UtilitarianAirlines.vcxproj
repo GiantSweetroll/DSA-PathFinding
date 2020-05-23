@@ -170,6 +170,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="uaCanvas.cpp" />
+    <ClCompile Include="uaGlobals.cpp" />
     <ClCompile Include="uaID.cpp" />
     <ClCompile Include="uaMethods.cpp" />
     <ClCompile Include="uaApp.cpp" />
@@ -179,8 +180,17 @@
     <ClCompile Include="uaSeat.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Algorithms\BST.h" />
+    <ClInclude Include="Algorithms\LinkedList.h" />
+    <ClInclude Include="Algorithms\MMRCalculator.h" />
+    <ClInclude Include="Algorithms\Passenger.h" />
+    <ClInclude Include="Algorithms\Plane.h" />
+    <ClInclude Include="Algorithms\PolyFunc.h" />
+    <ClInclude Include="Algorithms\RandomUtil.h" />
+    <ClInclude Include="Algorithms\SeatCoord.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="uaCanvas.h" />
+    <ClInclude Include="uaGlobals.h" />
     <ClInclude Include="uaID.h" />
     <ClInclude Include="uaMethods.h" />
     <ClInclude Include="uaApp.h" />
@@ -188,6 +198,9 @@
     <ClInclude Include="uaMainMenu.h" />
     <ClInclude Include="uaReg.h" />
     <ClInclude Include="uaSeat.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Algorithms\PassengerData" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

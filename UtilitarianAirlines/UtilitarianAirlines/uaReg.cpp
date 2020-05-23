@@ -89,6 +89,7 @@ void uaReg::initRegPage()
 	stHeight = new wxStaticText(panelReg, wxID_ANY, "Height (m)");
 	stWeight = new wxStaticText(panelReg, wxID_ANY, "Weight (Kg)");
 	stSpecialNeeds = new wxStaticText(panelReg, wxID_ANY, "Special Needs");
+	stPregnant = new wxStaticText(panelReg, wxID_ANY, "Pregnant");
 	stDisclaimer = new wxStaticText(panelReg, wxID_ANY, "All information remains confidential and will only be used to determine the best seating\nfor you.");
 	tfFirstName = new wxTextCtrl(panelReg, wxID_ANY);
 	tfLastName = new wxTextCtrl(panelReg, wxID_ANY);
@@ -100,7 +101,9 @@ void uaReg::initRegPage()
 	cmbSpecialNeeds = new wxComboBox(panelReg, wxID_ANY, "None");
 	btnNextReg = new wxButton(panelReg, uaID::c_btnRegNextReg, "Next");
 	btnBackReg = new wxButton(panelReg, uaID::c_btnRegBackReg, "Back");
-	wxFont basicFont(30, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD);
+	wxString choices[2] = {"Yes", "No"};
+	radPregnant = new wxRadioBox(panelReg, wxID_ANY, "", wxDefaultPosition, wxDefaultSize, 2, choices);
+	wxFont basicFont(20, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD);
 
 	//Properties
 	panelReg->SetBackgroundColour(*wxWHITE);
@@ -126,6 +129,8 @@ void uaReg::initRegPage()
 	cmbSex->Append(_("Male"));
 	cmbSex->Append(_("Female"));
 	cmbSex->Append(_("Rather not specify"));
+	stPregnant->SetFont(basicFont);
+//	radPregnant->SetFont(basicFont);
 	stDisclaimer->SetFont(basicFont);
 	stDisclaimer->SetForegroundColour(wxColour(253, 0, 0, 255));
 	stSpecialNeeds->SetFont(basicFont);
@@ -167,6 +172,9 @@ void uaReg::initRegPage()
 	uaMethods::insertFillers(grid, 3);
 	grid->Add(stWeight);
 	grid->Add(tfWeight);
+	uaMethods::insertFillers(grid, 3);
+	grid->Add(stPregnant);
+	grid->Add(radPregnant);
 	uaMethods::insertFillers(grid, 3);
 	grid->Add(stSpecialNeeds);
 	grid->Add(cmbSpecialNeeds);
@@ -318,12 +326,21 @@ void uaReg::onNextStartClick(wxCommandEvent& evt)
 
 void uaReg::onNextRegClick(wxCommandEvent& evt)
 {
-	progress->SetBitmap(wxBitmap("Linear_3.bmp", wxBITMAP_TYPE_BMP));
-	currentPage->SetBitmap(wxBitmap("banner_Seat.bmp", wxBITMAP_TYPE_BMP));
-	mainSizer->Replace(panelReg, panelSeat);
-	panelReg->Hide();
-	panelSeat->Show();
-	this->Layout();
+	if (!allItemsFilled())
+	{
+		wxMessageDialog md(this, "Please fill in all the fields.");
+		md.ShowModal();
+	}
+	else
+	{
+		passenger = getPassengerData();
+		progress->SetBitmap(wxBitmap("Linear_3.bmp", wxBITMAP_TYPE_BMP));
+		currentPage->SetBitmap(wxBitmap("banner_Seat.bmp", wxBITMAP_TYPE_BMP));
+		mainSizer->Replace(panelReg, panelSeat);
+		panelReg->Hide();
+		panelSeat->Show();
+		this->Layout();
+	}
 }
 
 void uaReg::onBackRegClick(wxCommandEvent& evt)
@@ -349,4 +366,73 @@ void uaReg::onBackSeatClick(wxCommandEvent& evt)
 void uaReg::onMainMenuClick(wxCommandEvent& evt)
 {
 
+}
+
+Passenger* uaReg::getPassengerData()
+{
+	//Get gender
+	Passenger::Gender gender;
+	if (cmbSex->GetSelection() == 0)
+	{
+		gender = Passenger::MALE;
+	}
+	else if (cmbSex->GetSelection() == 1)
+	{
+		gender = Passenger::FEMALE;
+	}
+	else
+	{
+		gender = Passenger::OTHER;
+	}
+	//Get weight
+	string temp = tfWeight->GetValue().Trim().ToStdString();
+	double weight = stod(temp);
+	//Get height
+	temp = tfHeight->GetValue().Trim().ToStdString();
+	double height = stod(temp);
+
+	//Check if pregnant
+	bool preg = radPregnant->GetSelection() == 0;
+
+	//Get special needs
+	Passenger::Disabilities sn;
+	switch (cmbSpecialNeeds->GetSelection())
+	{
+		case 0:
+			sn = Passenger::NONE;
+			break;
+		case 1:
+			sn = Passenger::HANDICAPPED;
+			break;
+		case 2:
+			sn = Passenger::BLIND;
+			break;
+		case 3:
+			sn = Passenger::MENTALILLNESS;
+			break;
+		case 4:
+			sn = Passenger::MILDSICKNESS;
+			break;
+		case 5:
+			sn = Passenger::MUSCLEATROPHY;
+			break;
+		case 6:
+			sn = Passenger::HEAVYSICKNESS;
+			break;
+
+		default:
+			sn = Passenger::NONE;
+			break;
+	}
+
+	return new Passenger(gender, wxAtoi(tfAge->GetValue().Trim()), weight, height, preg, sn);
+}
+
+bool uaReg::allItemsFilled()
+{
+	return tfFirstName->GetValue().Trim() != "" &&
+		tfAge->GetValue().Trim() != "" &&
+		tfEmail->GetValue().Trim() != "" &&
+		tfHeight->GetValue().Trim() != "" &&
+		tfWeight->GetValue().Trim() != "";
 }

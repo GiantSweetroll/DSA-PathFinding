@@ -4,6 +4,7 @@
 #include "wx/combobox.h"
 #include "uaMethods.h"
 #include "uaID.h"
+#include "Algorithms/Passenger.h"
 
 class uaReg : public wxPanel
 {
@@ -24,6 +25,7 @@ private:
 	wxStaticText* stStart = nullptr;
 	wxStaticText* stDisclaimer = nullptr;
 	wxStaticText* stSeatNum = nullptr;
+	wxStaticText* stPregnant = nullptr;
 	wxTextCtrl* tfFirstName = nullptr;
 	wxTextCtrl* tfLastName = nullptr;
 	wxTextCtrl* tfAge = nullptr;
@@ -47,7 +49,9 @@ private:
 	wxPanel* panelReg = nullptr;
 	wxPanel* panelSeat = nullptr;
 	wxBoxSizer* mainSizer = nullptr;
+	wxRadioBox* radPregnant = nullptr;
 	wxScrolledWindow* scroll = nullptr;
+	Passenger* passenger = nullptr;
 
 	//Methods
 private:
@@ -60,6 +64,8 @@ private:
 	void onBackRegClick(wxCommandEvent& evt);
 	void onBackSeatClick(wxCommandEvent& evt);
 	void onMainMenuClick(wxCommandEvent& evt);
+	Passenger* getPassengerData();
+	bool allItemsFilled();
 
 	wxDECLARE_EVENT_TABLE();
 };
