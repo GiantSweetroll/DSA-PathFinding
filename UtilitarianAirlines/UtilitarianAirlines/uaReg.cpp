@@ -114,14 +114,18 @@ void uaReg::initRegPage()
 	tfLastName->SetFont(basicFont);
 	stEmail->SetFont(basicFont);
 	tfEmail->SetFont(basicFont);
+	tfEmail->SetHint("e.g. myemail@email.com");
 	stAge->SetFont(basicFont);
 	tfAge->SetFont(basicFont);
+	tfAge->SetHint("8-83");
 	tfAge->SetValidator(wxTextValidator(wxFILTER_DIGITS));
 	stWeight->SetFont(basicFont);
 	tfWeight->SetFont(basicFont);
+	tfWeight->SetHint("37 - 206");
 	tfWeight->SetValidator(wxTextValidator(wxFILTER_NUMERIC));
 	stHeight->SetFont(basicFont);
 	tfHeight->SetFont(basicFont);
+	tfHeight->SetHint("0.9 - 2.1");
 	tfHeight->SetValidator(wxTextValidator(wxFILTER_NUMERIC));
 	stGender->SetFont(basicFont);
 	cmbSex->SetFont(basicFont);
@@ -368,7 +372,7 @@ void uaReg::onMainMenuClick(wxCommandEvent& evt)
 
 }
 
-Passenger* uaReg::getPassengerData()
+BetterPassenger* uaReg::getPassengerData()
 {
 	//Get gender
 	Passenger::Gender gender;
@@ -425,7 +429,11 @@ Passenger* uaReg::getPassengerData()
 			break;
 	}
 
-	return new Passenger(gender, wxAtoi(tfAge->GetValue().Trim()), weight, height, preg, sn);
+	return new BetterPassenger(tfFirstName->GetValue().Trim().ToStdString(), 
+								tfLastName->GetValue().Trim().ToStdString(), 
+								tfEmail->GetValue().Trim().ToStdString(), 
+								gender, wxAtoi(tfAge->GetValue().Trim()), 
+								weight, height, preg, sn);
 }
 
 bool uaReg::allItemsFilled()

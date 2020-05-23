@@ -4,7 +4,7 @@
 #include "wx/combobox.h"
 #include "uaMethods.h"
 #include "uaID.h"
-#include "Algorithms/Passenger.h"
+#include "BetterPassenger.h"
 
 class uaReg : public wxPanel
 {
@@ -51,7 +51,7 @@ private:
 	wxBoxSizer* mainSizer = nullptr;
 	wxRadioBox* radPregnant = nullptr;
 	wxScrolledWindow* scroll = nullptr;
-	Passenger* passenger = nullptr;
+	BetterPassenger* passenger = nullptr;
 
 	//Methods
 private:
@@ -64,7 +64,7 @@ private:
 	void onBackRegClick(wxCommandEvent& evt);
 	void onBackSeatClick(wxCommandEvent& evt);
 	void onMainMenuClick(wxCommandEvent& evt);
-	Passenger* getPassengerData();
+	BetterPassenger* getPassengerData();
 	bool allItemsFilled();
 
 	wxDECLARE_EVENT_TABLE();
