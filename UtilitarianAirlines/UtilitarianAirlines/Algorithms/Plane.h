@@ -77,13 +77,13 @@ public:
 
         BST<Passenger> sortedPassengers = BST<Passenger>();
 
-        int repetition = clampNum(customPassengerList.size(), 0, (length * width));
+        int repetition = Rand::clampNum(customPassengerList.size(), 0, (length * width));
         // Adds all the custom passengers to the BST
         for (int i = 0; i < repetition; i++) {
             sortedPassengers.insert(customPassengerList.get(i));
         }
 
-        repetition = clampNum(passengerList.size(), 0, (length * width) - sortedPassengers.getSize());
+        repetition = Rand::clampNum(passengerList.size(), 0, (length * width) - sortedPassengers.getSize());
         // Adds all of the passengers into the BST. If overflows, then just insert until full.
         for (int i = 0; i < repetition; i++) {
             sortedPassengers.insert(passengerList.get(i));
@@ -91,7 +91,7 @@ public:
     
         // Generates the rest as "empty" passengers.
         int emptySeats = (length * width) - sortedPassengers.getSize();
-        repetition = clampNum(emptySeats, 0, numeric_limits<int>().max());
+        repetition = Rand::clampNum(emptySeats, 0, numeric_limits<int>().max());
         for (int i = 0; i < repetition; i++) {
             sortedPassengers.insert(Passenger());
         }
