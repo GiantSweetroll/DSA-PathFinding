@@ -11,6 +11,7 @@
 #include "BST.h"
 #include "SeatCoord.h"
 #include "RandomUtil.h"
+#include <tuple>
 
 #include <fstream>
 #include <sstream>
@@ -203,6 +204,27 @@ public:
         return seats;
     }
 
+    LinkedList<tuple<Passenger, SeatCoord>> getCustomPassengerAndPos() {
+
+        LinkedList<tuple<Passenger, SeatCoord>> data;
+                if (generated) {
+        for (int i = 0; i < passengers.size(); i++) {
+            // Looping through the length
+        for (int j = 0; j < passengers.get(i).size(); j++) {
+            // Looping through the width
+            for (int x = 0; x < customPassengerList.size(); x++) {
+                // Looping through custom passengers
+                if(passengers.get(i).get(j).getMMR() == customPassengerList.get(x).getMMR()) {
+                    // Make tuple and insert into list
+                    data.add(make_tuple(passengers.get(i).get(j), SeatCoord(i, j)));
+                }
+            }
+        }
+        }
+        }
+        return data;
+    }
+
     void clearCustomPassengers() {
         customPassengerList.clearList();
     }
@@ -255,7 +277,6 @@ public:
             cout << "(" << emergencyExits.get(i).lengthAxis << ", " << emergencyExits.get(i).widthAxis << ")" << endl;
         }
     }
-
 
     // File parser methods
     void savePassengerData(string fileName) {
