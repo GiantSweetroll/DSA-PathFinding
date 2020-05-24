@@ -3,6 +3,7 @@
 #include "wx/wx.h"
 #include "uaID.h"
 #include "uaMethods.h"
+#include "uaConstants.h"
 
 class uaSeat : public wxPanel
 {

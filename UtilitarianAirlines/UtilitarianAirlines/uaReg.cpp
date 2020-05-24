@@ -7,6 +7,8 @@ wxBEGIN_EVENT_TABLE(uaReg, wxPanel)
 	EVT_BUTTON(uaID::c_btnRegBackSeat, onBackSeatClick)
 wxEND_EVENT_TABLE()
 
+extern BetterPlane plane1;
+
 uaReg::uaReg(wxWindow* parent) : wxPanel(parent, wxID_ANY)
 {
 	//Initialization
@@ -14,7 +16,6 @@ uaReg::uaReg(wxWindow* parent) : wxPanel(parent, wxID_ANY)
 	currentPage = new wxStaticBitmap(this, wxID_ANY, wxBitmap("banner_start.bmp", wxBITMAP_TYPE_BMP));
 	initStartPage();
 	initRegPage();
-	initSeatPage();
 	mainSizer = new wxBoxSizer(wxVERTICAL);
 	wxBoxSizer* marginsLR = new wxBoxSizer(wxHORIZONTAL);
 
@@ -202,13 +203,13 @@ void uaReg::initSeatPage()
 	panelSeat = new wxPanel(this, wxID_ANY);
 	btnBackSeat = new wxButton(panelSeat, uaID::c_btnRegBackSeat, "Back");
 	btnMainMenu = new wxButton(panelSeat, uaID::c_btnRegMainMenu, "Main Menu");
-	stSeatNum = new wxStaticText(panelSeat, wxID_ANY, "A1");
+	SeatCoord passengerSeat = plane1.getCustomPassengerSeat(passenger->getEmail());
+	stSeatNum = new wxStaticText(panelSeat, wxID_ANY, uaMethods::getSeatNumber(passengerSeat));
 	wxStaticText* st1 = new wxStaticText(panelSeat, wxID_ANY, "According to your registration your seat will be at:");
 	wxStaticText* st2 = new wxStaticText(panelSeat, wxID_ANY, "Please enjoy your flight,\nThank you for choosing");
 	wxStaticText* st3 = new wxStaticText(panelSeat, wxID_ANY, "Utilitarian Airlines");
 	wxStaticText* st4 = new wxStaticText(panelSeat, wxID_ANY, "Remember to always check your seat because it might change\naccording to others, we will be sending you an email of the final\nseating 3 days before the flight.\nThank you.");
-	int exits[][3] = { {0, 1, 0}, {5, 2, 1} };
-	wxBoxSizer* seating = uaMethods::getSeatingSizer(panelSeat, 8, 3, 4, 3, exits);
+	wxBoxSizer* seating = uaMethods::getSeatingSizer(panelSeat, plane1, passengerSeat);
 	wxBoxSizer* leftBox = new wxBoxSizer(wxVERTICAL);
 	wxBoxSizer* btnBox = new wxBoxSizer(wxHORIZONTAL);
 	wxBoxSizer* box = new wxBoxSizer(wxHORIZONTAL);
@@ -338,6 +339,8 @@ void uaReg::onNextRegClick(wxCommandEvent& evt)
 	else
 	{
 		passenger = getPassengerData();
+		plane1.addCustomPassenger(*passenger);
+		initSeatPage();
 		progress->SetBitmap(wxBitmap("Linear_3.bmp", wxBITMAP_TYPE_BMP));
 		currentPage->SetBitmap(wxBitmap("banner_Seat.bmp", wxBITMAP_TYPE_BMP));
 		mainSizer->Replace(panelReg, panelSeat);

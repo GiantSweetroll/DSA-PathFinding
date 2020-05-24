@@ -5,6 +5,7 @@
 #include "uaMethods.h"
 #include "uaID.h"
 #include "BetterPassenger.h"
+#include "uaConstants.h"
 
 class uaReg : public wxPanel
 {

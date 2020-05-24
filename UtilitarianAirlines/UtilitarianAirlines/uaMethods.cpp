@@ -9,11 +9,16 @@ void uaMethods::insertFillers(wxGridSizer* sizer, int count)
 	}
 }
 
-wxBoxSizer* uaMethods::getSeatingSizer(wxWindow* parent, int seatRows, int left, int middle, int right, int exits[][3])
+wxBoxSizer* uaMethods::getSeatingSizer(wxWindow* parent, BetterPlane plane, SeatCoord seatHighlight)
 {
 	//Note: exits[][rowNumber, amount, pos(0=left, 1=right)]
 
 	//Initialization
+	int seatRows = plane.getSeatRowsCount();
+	int left = plane.getLeftSeatsCount();
+	int middle = plane.getMiddleSeatsCount();
+	int right = plane.getRightSeatsCount();
+	LinkedList<LinkedList<int>> exits = plane.getEmergencyExitsArray2();
 	wxBoxSizer* sizer = new wxBoxSizer(wxVERTICAL);
 	int spaceBetweenExits = left + middle + right;		//When there's two exits in one row
 	int rowChar = 65;		//A -> Row alphabet
@@ -23,13 +28,13 @@ wxBoxSizer* uaMethods::getSeatingSizer(wxWindow* parent, int seatRows, int left,
 	for (int i = 0; i < seatRows; i++)
 	{
 		//Check if exits needs to be made
-		if (i == exits[curExit][0])
+		if (curExit < exits.size() && i == exits.get(curExit).get(0))
 		{
 			wxGridSizer* exitSizer = new wxGridSizer(left + middle + right + 2, 1, 0);
-			if (exits[curExit][1] == 1)
+			if (exits.get(curExit).get(1) == 1)
 			{
 				wxStaticBitmap* exit = new wxStaticBitmap(parent, wxID_ANY, wxBitmap("exit.bmp", wxBITMAP_TYPE_BMP));
-				if (exits[curExit][2] == 0)
+				if (exits.get(curExit).get(2) == 0)
 				{
 					exitSizer->Add(exit, wxSizerFlags().Expand());
 					uaMethods::insertFillers(exitSizer, spaceBetweenExits+1);
@@ -58,11 +63,16 @@ wxBoxSizer* uaMethods::getSeatingSizer(wxWindow* parent, int seatRows, int left,
 		int seatNum = 1;
 		for (int a = 0; a < left; a++)
 		{
-			wxPanel* panel = new wxPanel(parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxSIMPLE_BORDER);
-			wxStaticText* text = new wxStaticText(panel, wxID_ANY, to_string(seatNum));
+			wxPanel* panel = new wxPanel(parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxSIMPLE_BORDER );
+			wxStaticText* text = new wxStaticText(panel, wxID_ANY, to_string(seatNum), wxDefaultPosition, wxDefaultSize, wxALIGN_CENTER);
 			text->SetFont(*seatFont);
+			if (seatHighlight.lengthAxis == i && seatHighlight.widthAxis == seatNum-1)
+			{
+				text->SetBackgroundColour(wxColour(255, 0, 0, 255));
+				text->SetForegroundColour(wxColour(255, 255, 255, 255));
+			}
 			wxGridSizer* sizer = new wxGridSizer(1, 0, 0);
-			sizer->Add(text, wxSizerFlags().Center());
+			sizer->Add(text, wxSizerFlags().Expand());
 			panel->SetSizer(sizer);
 			panel->Layout();
 			seatsSizer->Add(panel, wxSizerFlags().Expand());
@@ -78,10 +88,15 @@ wxBoxSizer* uaMethods::getSeatingSizer(wxWindow* parent, int seatRows, int left,
 		for (int a = 0; a < middle; a++)
 		{
 			wxPanel* panel = new wxPanel(parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxSIMPLE_BORDER);
-			wxStaticText* text = new wxStaticText(panel, wxID_ANY, to_string(seatNum));
+			wxStaticText* text = new wxStaticText(panel, wxID_ANY, to_string(seatNum), wxDefaultPosition, wxDefaultSize, wxALIGN_CENTER);
 			wxGridSizer* sizer = new wxGridSizer(1, 0, 0);
 			text->SetFont(*seatFont);
-			sizer->Add(text, wxSizerFlags().Center());
+			if (seatHighlight.lengthAxis == i && seatHighlight.widthAxis == seatNum - 1)
+			{
+				text->SetBackgroundColour(wxColour(255, 0, 0, 255));
+				text->SetForegroundColour(wxColour(255, 255, 255, 255));
+			}
+			sizer->Add(text, wxSizerFlags().Expand());
 			panel->SetSizer(sizer);
 			panel->Layout();
 			seatsSizer->Add(panel, wxSizerFlags().Expand());
@@ -97,10 +112,15 @@ wxBoxSizer* uaMethods::getSeatingSizer(wxWindow* parent, int seatRows, int left,
 		for (int a = 0; a < right; a++)
 		{
 			wxPanel* panel = new wxPanel(parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxSIMPLE_BORDER);
-			wxStaticText* text = new wxStaticText(panel, wxID_ANY, to_string(seatNum));
+			wxStaticText* text = new wxStaticText(panel, wxID_ANY, to_string(seatNum), wxDefaultPosition, wxDefaultSize, wxALIGN_CENTER);
 			wxGridSizer* sizer = new wxGridSizer(1, 0, 0);
 			text->SetFont(*seatFont);
-			sizer->Add(text, wxSizerFlags().Center());
+			if (seatHighlight.lengthAxis == i && seatHighlight.widthAxis == seatNum - 1)
+			{
+				text->SetBackgroundColour(wxColour(255, 0, 0, 255));
+				text->SetForegroundColour(wxColour(255, 255, 255, 255));
+			}
+			sizer->Add(text, wxSizerFlags().Expand());
 			panel->SetSizer(sizer);
 			panel->Layout();
 			seatsSizer->Add(panel, wxSizerFlags().Expand());
@@ -110,13 +130,13 @@ wxBoxSizer* uaMethods::getSeatingSizer(wxWindow* parent, int seatRows, int left,
 		sizer->Add(seatsSizer, wxSizerFlags().Expand());
 	}
 	//Draw exits at tail
-	if (exits[curExit][0] == seatRows)
+	if (curExit < exits.size() && exits.get(curExit).get(0) == seatRows)
 	{
 		wxGridSizer* exitSizer = new wxGridSizer(left + right + 1, 1, 0);
-		if (exits[curExit][1] == 1)
+		if (exits.get(curExit).get(1) == 1)
 		{
 			wxStaticBitmap* exit = new wxStaticBitmap(parent, wxID_ANY, wxBitmap("exit.bmp", wxBITMAP_TYPE_BMP));
-			if (exits[curExit][2] == 0)
+			if (exits.get(curExit).get(2) == 0)
 			{
 				exitSizer->Add(exit, wxSizerFlags().Expand());
 				uaMethods::insertFillers(exitSizer, spaceBetweenExits + 1);
@@ -142,25 +162,26 @@ wxBoxSizer* uaMethods::getSeatingSizer(wxWindow* parent, int seatRows, int left,
 	return sizer;
 }
 
-int** uaMethods::create2DArray(unsigned height, unsigned width)
+
+BetterPlane uaMethods::initPlane1()
 {
-	{
-		//https://stackoverflow.com/questions/8617683/return-a-2d-array-from-a-function
-		int** array2D = 0;
-		array2D = new int* [height];
+	int seatRows = 8;
+	int left = 3;
+	int middle = 4;
+	int right = 3;
+	BetterPlane plane = BetterPlane(seatRows, left, middle, right);
 
-		for (int h = 0; h < height; h++)
-		{
-			array2D[h] = new int[width];
+	plane.addEmergencyExit(0, 0);
+	plane.addEmergencyExit(5, 0);
+	plane.addEmergencyExit(5, left + middle + right);
+	plane.addEmergencyExit(3, left + middle + right);
 
-			for (int w = 0; w < width; w++)
-			{
-				// fill in some initial values
-				// (filling in zeros would be more logic, but this is just for the example)
-				array2D[h][w] = w + width * h;
-			}
-		}
+	return plane;
+}
 
-		return array2D;
-	}
+string uaMethods::getSeatNumber(SeatCoord c)
+{
+	char cc = 65 + c.lengthAxis;
+
+	return string(1, cc) + to_string((int)(c.widthAxis + 1));
 }

@@ -1,6 +1,9 @@
 #pragma once
 
 #include "Algorithms/Plane.h"
+#include <map>
+#include "Algorithms/LinkedList.h"
+#include "BetterPassenger.h"
 
 class BetterPlane : public Plane
 {
@@ -12,6 +15,7 @@ public:
 	//Fields
 private:
 	int left, middle, right, seatRows;
+	map<string, SeatCoord>* passengerSeatMap;
 
 	//Methods
 public:
@@ -23,6 +27,8 @@ public:
 	void setRightSeatsCount(int n);
 	void setMiddleSeatsCount(int n);
 	void setSeatRowsCount(int n);
-	int** getEmergencyExits2DArray();
+	void addCustomPassenger(BetterPassenger passenger);
+	LinkedList<LinkedList<int>> getEmergencyExitsArray2();
+	SeatCoord getCustomPassengerSeat(string email);
 };
 

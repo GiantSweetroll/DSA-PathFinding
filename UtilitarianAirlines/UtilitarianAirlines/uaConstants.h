@@ -1,13 +1,6 @@
 #pragma once
 #include "BetterPlane.h"
-class uaConstants
-{
-	//Static Fields
-public:
-	static BetterPlane plane1;
+#include "uaMethods.h"
 
-	//Methods
-private:
-	BetterPlane initPlane1();
-};
+extern BetterPlane plane1;
 
