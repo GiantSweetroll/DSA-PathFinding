@@ -67,6 +67,8 @@ private:
 	void onMainMenuClick(wxCommandEvent& evt);
 	BetterPassenger* getPassengerData();
 	bool allItemsFilled();
+public:
+	void resetDefaults();
 
 	wxDECLARE_EVENT_TABLE();
 };

@@ -135,6 +135,7 @@ void uaReg::initRegPage()
 	cmbSex->Append(_("Female"));
 	cmbSex->Append(_("Rather not specify"));
 	stPregnant->SetFont(basicFont);
+	radPregnant->SetSelection(1);
 //	radPregnant->SetFont(basicFont);
 	stDisclaimer->SetFont(basicFont);
 	stDisclaimer->SetForegroundColour(wxColour(253, 0, 0, 255));
@@ -370,9 +371,27 @@ void uaReg::onBackSeatClick(wxCommandEvent& evt)
 	this->Layout();
 }
 
-void uaReg::onMainMenuClick(wxCommandEvent& evt)
+void uaReg::resetDefaults()
 {
+	//Resets all pages and fields to their initial state
+	plane1.savePassengerData("myData");
 
+	tfFirstName->SetValue("");
+	tfLastName->SetValue("");
+	tfAge->SetValue("");
+	cmbSex->SetSelection(0);
+	tfEmail->SetValue("");
+	tfHeight->SetValue("");
+	tfWeight->SetValue("");	
+	radPregnant->SetSelection(1);
+	cmbSpecialNeeds->SetSelection(0);
+
+	progress->SetBitmap(wxBitmap("Linear_1.bmp", wxBITMAP_TYPE_BMP));
+	currentPage->SetBitmap(wxBitmap("banner_start.bmp", wxBITMAP_TYPE_BMP));
+	mainSizer->Replace(panelSeat, panelStart);
+	panelSeat->Hide();
+	panelStart->Show();
+	this->Layout();
 }
 
 BetterPassenger* uaReg::getPassengerData()

@@ -42,6 +42,7 @@ void uaMain::OnMainRegClicked(wxCommandEvent& evt)
 
 void uaMain::OnRegBackClicked(wxCommandEvent& evt)
 {
+	reg->resetDefaults();
 	sizer->Replace(reg, mainMenu);
 	reg->Hide();
 	mainMenu->Show();
