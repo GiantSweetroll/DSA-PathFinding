@@ -7,6 +7,7 @@ wxBEGIN_EVENT_TABLE(uaMain, wxFrame)
 	EVT_BUTTON(uaID::c_btnRegBack, OnRegBackClicked)
 	EVT_BUTTON(uaID::c_btnRegBackStart, OnRegBackClicked)
 	EVT_BUTTON(uaID::c_btnRegMainMenu, OnRegBackClicked)
+	EVT_BUTTON(uaID::c_btnSeatBack, OnSeatMainMenuClicked)
 wxEND_EVENT_TABLE()
 
 
@@ -57,6 +58,36 @@ void uaMain::OnMainExitClicked(wxCommandEvent& evt)
 
 void uaMain::OnMainSeatClicked(wxCommandEvent& evt)
 {
+	wxTextEntryDialog* dialog = new wxTextEntryDialog(this, "Please enter your email", "Enter Email");
+	int response = dialog->ShowModal();
+	if (response == wxID_OK || response == wxID_YES)
+	{
+		string email = dialog->GetValue().ToStdString();
+		try
+		{
+			seat = new uaSeat(this, plane1, email);
+
+			sizer->Replace(mainMenu, seat);
+			mainMenu->Hide();
+			seat->Show();
+
+			this->Layout();
+		}
+		catch (...)
+		{
+			wxMessageDialog* msg = new wxMessageDialog(this, "Sorry your email was invalid. You may have not registered it yet.", "User Not Found!");
+			msg->ShowModal();
+		}
+	}
+}
+
+void uaMain::OnSeatMainMenuClicked(wxCommandEvent& evt)
+{
+	sizer->Replace(seat, mainMenu);
+	seat->Hide();
+	mainMenu->Show();
+
+	this->Layout();
 }
 
 /*

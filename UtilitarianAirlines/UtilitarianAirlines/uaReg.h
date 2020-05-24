@@ -41,8 +41,6 @@ private:
 	wxButton* btnNextStart = nullptr;
 	wxButton* btnNextReg = nullptr;
 	wxButton* btnBackReg = nullptr;
-	wxButton* btnBackSeat = nullptr;
-	wxButton* btnMainMenu = nullptr;
 	wxButton* btnBack = nullptr;
 	wxComboBox* cmbSex = nullptr;
 	wxComboBox* cmbSpecialNeeds = nullptr;

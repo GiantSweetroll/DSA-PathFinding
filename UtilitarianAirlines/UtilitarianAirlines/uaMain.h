@@ -4,6 +4,7 @@
 #include "uaMainMenu.h"
 #include "uaReg.h"
 #include "uaID.h"
+#include "uaSeat.h"
 
 class uaMain : public wxFrame
 {
@@ -19,6 +20,7 @@ public:
 private:
 	uaMainMenu* mainMenu = nullptr;		//Main Menu
 	uaReg* reg = nullptr;				//Registration Menu
+	uaSeat* seat = nullptr;
 	wxGridSizer* sizer = nullptr;
 
 	//Methods
@@ -26,6 +28,7 @@ private:
 	void OnMainSeatClicked(wxCommandEvent& evt);
 	void OnMainExitClicked(wxCommandEvent& evt);
 	void OnRegBackClicked(wxCommandEvent& evt);
+	void OnSeatMainMenuClicked(wxCommandEvent& evt);
 
 	wxDECLARE_EVENT_TABLE();
 };

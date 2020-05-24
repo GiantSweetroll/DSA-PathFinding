@@ -9,16 +9,12 @@ class uaSeat : public wxPanel
 {
 	//Constructor
 public:
-	uaSeat(wxWindow* window);
+	uaSeat(wxWindow* window, BetterPlane plane, string email);
 	~uaSeat();
 
 	//Fields
 private:
-	wxButton* btnBack;
-	wxPanel* panelSeating;
-
-	//Methods
-private:
-	void initSeating(int seatRows, int left, int middle, int right, int exits[][3]);
+	wxPanel* panelSeating = nullptr;
+	wxStaticBitmap* banner = nullptr;
 };
 
