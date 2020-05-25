@@ -20,7 +20,7 @@ using namespace std;
 
 class Plane {
 
-private:
+protected:
 
     LinkedList<Passenger> passengerList; // Random passengers
     LinkedList<Passenger> customPassengerList; // Custom passengers
@@ -31,6 +31,7 @@ private:
 
     bool generated = false;
 
+private:
     // To make sorting easier, use a struct.
     struct SeatToExit {
         SeatToExit() {}
