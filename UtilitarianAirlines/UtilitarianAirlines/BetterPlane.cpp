@@ -1,7 +1,7 @@
 #include "BetterPlane.h"
 #include <wx\msgdlg.h>
 
-BetterPlane::BetterPlane(int seatRows, int left, int middle, int right) : Plane(left + middle + right, seatRows)
+BetterPlane::BetterPlane(int seatRows, int left, int middle, int right) : Plane(seatRows, left + middle + right)
 {
 	this->seatRows = seatRows;
 	this->left = left;
