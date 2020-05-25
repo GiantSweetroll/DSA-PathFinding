@@ -166,3 +166,16 @@ bool BetterPlane::passengerExists(string email)
 
 	return false;
 }
+
+bool BetterPlane::emailExists(string email)
+{
+	for (int i = 0; i < customBetterPassengerList.size(); i++)
+	{
+		if (customBetterPassengerList.get(i).getEmail() == email)
+		{
+			return true;
+		}
+	}
+
+	return false;
+}

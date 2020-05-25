@@ -292,14 +292,17 @@ void uaReg::onNextRegClick(wxCommandEvent& evt)
 		if (response == wxID_YES || response == wxID_OK)
 		{
 			passenger = getPassengerData();
-			plane1.addCustomPassenger(*passenger);
-			initSeatPage();
-			progress->SetBitmap(wxBitmap("Linear_3.bmp", wxBITMAP_TYPE_BMP));
-			currentPage->SetBitmap(wxBitmap("banner_Seat.bmp", wxBITMAP_TYPE_BMP));
-			mainSizer->Replace(panelReg, panelSeat);
-			panelReg->Hide();
-			panelSeat->Show();
-			this->Layout();
+			if (!plane1.emailExists(passenger->getEmail()))
+			{
+				plane1.addCustomPassenger(*passenger);
+				initSeatPage();
+				progress->SetBitmap(wxBitmap("Linear_3.bmp", wxBITMAP_TYPE_BMP));
+				currentPage->SetBitmap(wxBitmap("banner_Seat.bmp", wxBITMAP_TYPE_BMP));
+				mainSizer->Replace(panelReg, panelSeat);
+				panelReg->Hide();
+				panelSeat->Show();
+				this->Layout();
+			}
 		}
 	}
 }

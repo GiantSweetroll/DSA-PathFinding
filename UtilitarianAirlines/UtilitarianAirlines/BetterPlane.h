@@ -31,5 +31,6 @@ public:
 	LinkedList<LinkedList<int>> getEmergencyExitsArray2();
 	SeatCoord* getCustomPassengerSeat(string email);
 	bool passengerExists(string email);
+	bool emailExists(string email);
 };
 
