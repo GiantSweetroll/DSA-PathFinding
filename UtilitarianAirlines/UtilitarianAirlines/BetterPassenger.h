@@ -6,6 +6,7 @@ class BetterPassenger: public Passenger
 {
 	//Constructor
 public:
+	BetterPassenger();
 	BetterPassenger(string firstName, string lastName, string email, Gender gender, int age, double weightKilos, double heightMeters, bool pregnant, Disabilities disabilities);
 	~BetterPassenger();
 	

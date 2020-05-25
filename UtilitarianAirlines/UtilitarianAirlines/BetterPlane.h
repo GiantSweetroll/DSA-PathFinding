@@ -15,7 +15,7 @@ public:
 	//Fields
 private:
 	int left, middle, right, seatRows;
-	map<string, SeatCoord>* passengerSeatMap;
+	LinkedList<BetterPassenger> customBetterPassengerList;
 
 	//Methods
 public:
@@ -29,6 +29,7 @@ public:
 	void setSeatRowsCount(int n);
 	void addCustomPassenger(BetterPassenger passenger);
 	LinkedList<LinkedList<int>> getEmergencyExitsArray2();
-	SeatCoord getCustomPassengerSeat(string email);
+	SeatCoord* getCustomPassengerSeat(string email);
+	bool passengerExists(string email);
 };
 

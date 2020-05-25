@@ -63,7 +63,8 @@ void uaMain::OnMainSeatClicked(wxCommandEvent& evt)
 	if (response == wxID_OK || response == wxID_YES)
 	{
 		string email = dialog->GetValue().ToStdString();
-		try
+
+		if (plane1.passengerExists(email))
 		{
 			seat = new uaSeat(this, plane1, email);
 
@@ -73,7 +74,7 @@ void uaMain::OnMainSeatClicked(wxCommandEvent& evt)
 
 			this->Layout();
 		}
-		catch (...)
+		else
 		{
 			wxMessageDialog* msg = new wxMessageDialog(this, "Sorry your email was invalid. You may have not registered it yet.", "User Not Found!");
 			msg->ShowModal();

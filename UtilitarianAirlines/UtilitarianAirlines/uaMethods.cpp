@@ -192,7 +192,7 @@ wxPanel* uaMethods::initBasicPanelSeat(wxWindow* parent, bool regis, BetterPlane
 	wxPanel* panelSeat = new wxPanel(parent, wxID_ANY);
 	wxButton* btnBackSeat = new wxButton(panelSeat, uaID::c_btnRegBackSeat, "Back");
 	wxButton* btnMainMenu = regis? new wxButton(panelSeat, uaID::c_btnRegMainMenu, "Main Menu") : new wxButton(panelSeat, uaID::c_btnSeatBack, "Main Menu");
-	SeatCoord passengerSeat = plane.getCustomPassengerSeat(email);
+	SeatCoord passengerSeat = *plane.getCustomPassengerSeat(email);
 	wxStaticText* stSeatNum = new wxStaticText(panelSeat, wxID_ANY, uaMethods::getSeatNumber(passengerSeat));
 	wxStaticText* st1 = regis? new wxStaticText(panelSeat, wxID_ANY, "According to your registration your seat will be at:") : new wxStaticText(panelSeat, wxID_ANY, "Welcome back! Your seat will be at:");
 	wxStaticText* st2 = new wxStaticText(panelSeat, wxID_ANY, "Please enjoy your flight,\nThank you for choosing");

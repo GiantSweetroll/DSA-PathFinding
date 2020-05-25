@@ -7,7 +7,6 @@ BetterPlane::BetterPlane(int seatRows, int left, int middle, int right) : Plane(
 	this->left = left;
 	this->right = right;
 	this->middle = middle;
-	passengerSeatMap = new map<string, SeatCoord>();
 }
 
 BetterPlane::~BetterPlane()
@@ -118,11 +117,52 @@ void BetterPlane::addCustomPassenger(BetterPassenger passenger)
 {
 	Plane::addCustomPassenger(passenger);
 	Plane::generate();
-	LinkedList<SeatCoord> list = Plane::getCustomPassengerPos();
-	passengerSeatMap->insert(pair<string, SeatCoord>(passenger.getEmail(), list.get(list.size() - 1)));
+	customBetterPassengerList.add(passenger);
 }
 
-SeatCoord BetterPlane::getCustomPassengerSeat(string email)
+SeatCoord* BetterPlane::getCustomPassengerSeat(string email)
 {
-	return passengerSeatMap->find(email)->second;
+	LinkedList<tuple<Passenger, SeatCoord>> list = getCustomPassengerAndPos();
+	BetterPassenger* myPassenger = nullptr;
+
+	//Find passenger by email
+	for (int i = 0; i < customBetterPassengerList.size(); i++)
+	{
+		BetterPassenger temp = customBetterPassengerList.get(i);
+		if (temp.getEmail() == email)
+		{
+			myPassenger = &temp;
+			break;
+		}
+	}
+
+	//Find seat by mmr
+	if (myPassenger != nullptr)
+	{
+		for (int i = 0; i < list.size(); i++)
+		{
+			tuple<Passenger, SeatCoord> t = list.get(i);
+			Passenger temp = get<0>(t);
+			if (temp.getMMR() == myPassenger->getMMR())
+			{
+				return &get<1>(t);
+			}
+		}
+	}
+
+	return nullptr;
+}
+
+bool BetterPlane::passengerExists(string email)
+{
+	for (int i = 0; i < customBetterPassengerList.size(); i++)
+	{
+		BetterPassenger temp = customBetterPassengerList.get(i);
+		if (temp.getEmail() == email)
+		{
+			return true;
+		}
+	}
+
+	return false;
 }

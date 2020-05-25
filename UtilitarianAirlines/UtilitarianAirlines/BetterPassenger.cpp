@@ -1,5 +1,12 @@
 #include "BetterPassenger.h"
 
+BetterPassenger::BetterPassenger() : Passenger(Passenger::MALE, 7, 70, 1.3, false, Passenger::NONE)
+{
+	this->firstName = "";
+	this->lastName = "";
+	this->email = "";
+}
+
 BetterPassenger::BetterPassenger(string firstName, string lastName, string email, Gender gender, int age, double weightKilos, double heightMeters, bool pregnant, Disabilities disabilities) : Passenger(gender, age, weightKilos, heightMeters, pregnant, disabilities)
 {
 	this->firstName = firstName;
