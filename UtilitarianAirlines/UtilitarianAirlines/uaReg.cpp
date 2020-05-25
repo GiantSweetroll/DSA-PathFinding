@@ -287,15 +287,20 @@ void uaReg::onNextRegClick(wxCommandEvent& evt)
 	}
 	else
 	{
-		passenger = getPassengerData();
-		plane1.addCustomPassenger(*passenger);
-		initSeatPage();
-		progress->SetBitmap(wxBitmap("Linear_3.bmp", wxBITMAP_TYPE_BMP));
-		currentPage->SetBitmap(wxBitmap("banner_Seat.bmp", wxBITMAP_TYPE_BMP));
-		mainSizer->Replace(panelReg, panelSeat);
-		panelReg->Hide();
-		panelSeat->Show();
-		this->Layout();
+		wxMessageDialog* dialog = new wxMessageDialog(this, "Please confirm your information. Once you click \"Next\" your registration will be permanent.", "Are you sure?", wxYES_NO | wxCANCEL);
+		int response = dialog->ShowModal();
+		if (response == wxID_YES || response == wxID_OK)
+		{
+			passenger = getPassengerData();
+			plane1.addCustomPassenger(*passenger);
+			initSeatPage();
+			progress->SetBitmap(wxBitmap("Linear_3.bmp", wxBITMAP_TYPE_BMP));
+			currentPage->SetBitmap(wxBitmap("banner_Seat.bmp", wxBITMAP_TYPE_BMP));
+			mainSizer->Replace(panelReg, panelSeat);
+			panelReg->Hide();
+			panelSeat->Show();
+			this->Layout();
+		}
 	}
 }
 

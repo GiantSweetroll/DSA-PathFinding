@@ -198,10 +198,6 @@ wxPanel* uaMethods::initBasicPanelSeat(wxWindow* parent, bool regis, BetterPlane
 	//Initialization
 	wxPanel* panelSeat = new wxPanel(parent, wxID_ANY);
 	wxButton* btnBackSeat = nullptr;
-	if (regis)
-	{
-		wxButton* btnBackSeat = new wxButton(panelSeat, uaID::c_btnRegBackSeat, "Back");
-	}
 	wxButton* btnMainMenu = regis? new wxButton(panelSeat, uaID::c_btnRegMainMenu, "Main Menu") : new wxButton(panelSeat, uaID::c_btnSeatBack, "Main Menu");
 	SeatCoord passengerSeat = *plane.getCustomPassengerSeat(email);
 	wxStaticText* stSeatNum = new wxStaticText(panelSeat, wxID_ANY, uaMethods::getSeatNumber(passengerSeat));
@@ -227,23 +223,12 @@ wxPanel* uaMethods::initBasicPanelSeat(wxWindow* parent, bool regis, BetterPlane
 	st4->SetForegroundColour(wxColour(154, 176, 253, 255));
 	stSeatNum->SetFont(wxFont(60, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD));
 	stSeatNum->SetForegroundColour(wxColour(51, 108, 252, 255));
-	if (regis)
-	{
-		btnBackSeat->SetFont(basicFont);
-		btnBackSeat->SetForegroundColour(wxColour(255, 255, 255, 255));
-		btnBackSeat->SetBackgroundColour(wxColour(11, 83, 165, 255));
-	}
 	btnMainMenu->SetFont(basicFont);
 	btnMainMenu->SetForegroundColour(wxColour(255, 255, 255, 255));
 	btnMainMenu->SetBackgroundColour(wxColour(11, 83, 165, 255));
 	panelSeat->Hide();
 
 	//Add to sizer
-	if (regis)
-	{
-		btnBox->Add(btnBackSeat);
-		btnBox->AddSpacer(10);
-	}
 	btnBox->Add(btnMainMenu);
 	leftBox->Add(st1);
 	leftBox->Add(stSeatNum);
