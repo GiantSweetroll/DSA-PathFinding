@@ -99,11 +99,11 @@ void uaReg::initRegPage()
 	tfEmail = new wxTextCtrl(panelReg, wxID_ANY);
 	tfHeight = new wxTextCtrl(panelReg, wxID_ANY);
 	tfWeight = new wxTextCtrl(panelReg, wxID_ANY);
+	wxString choices[2] = { "Yes", "No" };
+	radPregnant = new wxRadioBox(panelReg, wxID_ANY, "", wxDefaultPosition, wxDefaultSize, 2, choices);
 	cmbSpecialNeeds = new wxComboBox(panelReg, wxID_ANY, "None");
 	btnNextReg = new wxButton(panelReg, uaID::c_btnRegNextReg, "Next");
 	btnBackReg = new wxButton(panelReg, uaID::c_btnRegBackReg, "Back");
-	wxString choices[2] = {"Yes", "No"};
-	radPregnant = new wxRadioBox(panelReg, wxID_ANY, "", wxDefaultPosition, wxDefaultSize, 2, choices);
 	wxFont basicFont(20, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD);
 
 	//Properties

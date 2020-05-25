@@ -172,9 +172,9 @@ BetterPlane uaMethods::initPlane1()
 	int right = 3;
 	BetterPlane plane = BetterPlane(seatRows, left, middle, right);
 
-	plane.addEmergencyExit(0, 0);
 	plane.addEmergencyExit(5, 0);
 	plane.addEmergencyExit(5, left + middle + right);
+	plane.addEmergencyExit(3, 0);
 	plane.addEmergencyExit(3, left + middle + right);
 
 	//Add random passenger
