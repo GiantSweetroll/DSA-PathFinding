@@ -143,12 +143,12 @@ void uaReg::initRegPage()
 	cmbSpecialNeeds->SetFont(basicFont);
 	cmbSpecialNeeds->SetEditable(false);
 	cmbSpecialNeeds->Append("None");
-	cmbSpecialNeeds->Append("Cannot walkness");
+	cmbSpecialNeeds->Append("Disabled");
 	cmbSpecialNeeds->Append("Blind");
 	cmbSpecialNeeds->Append("Mental Illness");
 	cmbSpecialNeeds->Append("Sick");
 	cmbSpecialNeeds->Append("Muscle Atrophy");
-	cmbSpecialNeeds->Append("Bone Stuff");
+	cmbSpecialNeeds->Append("Bone Fracture");
 	btnNextReg->SetBackgroundColour(wxColour(11, 83, 165, 255));
 	btnNextReg->SetForegroundColour(wxColour(255, 255, 255, 255));
 	btnNextReg->SetFont(basicFont);
