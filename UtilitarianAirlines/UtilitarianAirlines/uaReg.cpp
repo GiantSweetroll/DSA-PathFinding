@@ -95,10 +95,10 @@ void uaReg::initRegPage()
 	tfFirstName = new wxTextCtrl(panelReg, wxID_ANY);
 	tfLastName = new wxTextCtrl(panelReg, wxID_ANY);
 	tfAge = new wxTextCtrl(panelReg, wxID_ANY);
+	cmbSex = new wxComboBox(panelReg, wxID_ANY, "Male");
+	tfEmail = new wxTextCtrl(panelReg, wxID_ANY);
 	tfHeight = new wxTextCtrl(panelReg, wxID_ANY);
 	tfWeight = new wxTextCtrl(panelReg, wxID_ANY);
-	tfEmail = new wxTextCtrl(panelReg, wxID_ANY);
-	cmbSex = new wxComboBox(panelReg, wxID_ANY, "Male");
 	cmbSpecialNeeds = new wxComboBox(panelReg, wxID_ANY, "None");
 	btnNextReg = new wxButton(panelReg, uaID::c_btnRegNextReg, "Next");
 	btnBackReg = new wxButton(panelReg, uaID::c_btnRegBackReg, "Back");
