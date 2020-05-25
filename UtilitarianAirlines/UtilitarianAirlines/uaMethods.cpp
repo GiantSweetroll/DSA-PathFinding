@@ -176,6 +176,12 @@ BetterPlane uaMethods::initPlane1()
 	plane.addEmergencyExit(5, left + middle + right);
 	plane.addEmergencyExit(3, left + middle + right);
 
+	//Add random passenger
+	for (int i = 0; i < plane.getSize() - 3; i++)
+	{
+		plane.addToPassengers(Passenger::randomPassenger());
+	}
+
 	return plane;
 }
 
