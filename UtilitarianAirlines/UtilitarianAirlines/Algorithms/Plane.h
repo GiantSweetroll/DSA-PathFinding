@@ -255,6 +255,10 @@ public:
             cout << "(" << emergencyExits.get(i).lengthAxis << ", " << emergencyExits.get(i).widthAxis << ")" << endl;
         }
     }
+	
+	LinkedList<Passenger> getCustomPassengerList() {
+		return customPassengerList;
+	}
 
 
     // File parser methods
