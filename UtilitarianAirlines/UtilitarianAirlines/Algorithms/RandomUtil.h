@@ -18,6 +18,12 @@ static int clampNum(int val, int min, int max) {
     else { return val; }
 }
 
+static double clampNum(double val, double min, double max) {
+    if (val < min) { return min; }
+    else if (val > max) { return max; }
+    else { return val; }
+}
+
 // Generate a random number with more precision.
 static double randomRangeNum(double min, double max) {
     double seeder = (double)rand() / (double)rand();
