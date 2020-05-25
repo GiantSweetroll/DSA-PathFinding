@@ -118,15 +118,15 @@ void uaReg::initRegPage()
 	tfEmail->SetHint("e.g. myemail@email.com");
 	stAge->SetFont(basicFont);
 	tfAge->SetFont(basicFont);
-	tfAge->SetHint("8-83");
+//	tfAge->SetHint("8-83");
 	tfAge->SetValidator(wxTextValidator(wxFILTER_DIGITS));
 	stWeight->SetFont(basicFont);
 	tfWeight->SetFont(basicFont);
-	tfWeight->SetHint("37 - 206");
+//	tfWeight->SetHint("37 - 206");
 	tfWeight->SetValidator(wxTextValidator(wxFILTER_NUMERIC));
 	stHeight->SetFont(basicFont);
 	tfHeight->SetFont(basicFont);
-	tfHeight->SetHint("0.9 - 2.1");
+//	tfHeight->SetHint("0.9 - 2.1");
 	tfHeight->SetValidator(wxTextValidator(wxFILTER_NUMERIC));
 	stGender->SetFont(basicFont);
 	cmbSex->SetFont(basicFont);
