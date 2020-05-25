@@ -7,6 +7,8 @@ wxBEGIN_EVENT_TABLE(uaReg, wxPanel)
 	EVT_BUTTON(uaID::c_btnRegBackSeat, onBackSeatClick)
 wxEND_EVENT_TABLE()
 
+extern BetterPlane plane1;
+
 uaReg::uaReg(wxWindow* parent) : wxPanel(parent, wxID_ANY)
 {
 	//Initialization
@@ -14,7 +16,6 @@ uaReg::uaReg(wxWindow* parent) : wxPanel(parent, wxID_ANY)
 	currentPage = new wxStaticBitmap(this, wxID_ANY, wxBitmap("banner_start.bmp", wxBITMAP_TYPE_BMP));
 	initStartPage();
 	initRegPage();
-	initSeatPage();
 	mainSizer = new wxBoxSizer(wxVERTICAL);
 	wxBoxSizer* marginsLR = new wxBoxSizer(wxHORIZONTAL);
 
@@ -134,6 +135,7 @@ void uaReg::initRegPage()
 	cmbSex->Append(_("Female"));
 	cmbSex->Append(_("Rather not specify"));
 	stPregnant->SetFont(basicFont);
+	radPregnant->SetSelection(1);
 //	radPregnant->SetFont(basicFont);
 	stDisclaimer->SetFont(basicFont);
 	stDisclaimer->SetForegroundColour(wxColour(253, 0, 0, 255));
@@ -198,59 +200,7 @@ void uaReg::initRegPage()
 
 void uaReg::initSeatPage()
 {
-	//Initialization
-	panelSeat = new wxPanel(this, wxID_ANY);
-	btnBackSeat = new wxButton(panelSeat, uaID::c_btnRegBackSeat, "Back");
-	btnMainMenu = new wxButton(panelSeat, uaID::c_btnRegMainMenu, "Main Menu");
-	stSeatNum = new wxStaticText(panelSeat, wxID_ANY, "A1");
-	wxStaticText* st1 = new wxStaticText(panelSeat, wxID_ANY, "According to your registration your seat will be at:");
-	wxStaticText* st2 = new wxStaticText(panelSeat, wxID_ANY, "Please enjoy your flight,\nThank you for choosing");
-	wxStaticText* st3 = new wxStaticText(panelSeat, wxID_ANY, "Utilitarian Airlines");
-	wxStaticText* st4 = new wxStaticText(panelSeat, wxID_ANY, "Remember to always check your seat because it might change\naccording to others, we will be sending you an email of the final\nseating 3 days before the flight.\nThank you.");
-	int exits[][3] = { {0, 1, 0}, {5, 2, 1} };
-	wxBoxSizer* seating = uaMethods::getSeatingSizer(panelSeat, 8, 3, 4, 3, exits);
-	wxBoxSizer* leftBox = new wxBoxSizer(wxVERTICAL);
-	wxBoxSizer* btnBox = new wxBoxSizer(wxHORIZONTAL);
-	wxBoxSizer* box = new wxBoxSizer(wxHORIZONTAL);
-	wxFont basicFont(30, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD);
-
-	//Properties
-	panelSeat->SetBackgroundColour(*wxWHITE);
-	st1->SetFont(basicFont);
-	st1->SetForegroundColour(wxColour(51, 108, 252, 255));
-	st2->SetFont(basicFont);
-	st2->SetForegroundColour(wxColour(51, 108, 252, 255));
-	st3->SetFont(wxFont(48, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD));
-	st3->SetForegroundColour(wxColour(51, 108, 252, 255));
-	st4->SetFont(basicFont);
-	st4->SetForegroundColour(wxColour(154, 176, 253, 255));
-	stSeatNum->SetFont(wxFont(60, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD));
-	stSeatNum->SetForegroundColour(wxColour(51, 108, 252, 255));
-	btnBackSeat->SetFont(basicFont);
-	btnBackSeat->SetForegroundColour(wxColour(255, 255, 255, 255));
-	btnBackSeat->SetBackgroundColour(wxColour(11, 83, 165, 255));
-	btnMainMenu->SetFont(basicFont);
-	btnMainMenu->SetForegroundColour(wxColour(255, 255, 255, 255));
-	btnMainMenu->SetBackgroundColour(wxColour(11, 83, 165, 255));
-	panelSeat->Hide();
-
-	//Add to sizer
-	btnBox->Add(btnBackSeat);
-	btnBox->AddSpacer(10);
-	btnBox->Add(btnMainMenu);
-	leftBox->Add(st1);
-	leftBox->Add(stSeatNum);
-	leftBox->Add(st2);
-	leftBox->Add(st3);
-	leftBox->Add(st4);
-	leftBox->AddSpacer(10);
-	leftBox->Add(btnBox);
-	box->Add(leftBox);
-	box->AddSpacer(20);
-	box->Add(seating);
-
-	panelSeat->SetSizer(box);
-	panelSeat->Layout();
+	panelSeat = uaMethods::initBasicPanelSeat(this, true, plane1, passenger->getEmail());
 }
 
 void uaReg::initOldRegPage()
@@ -338,6 +288,8 @@ void uaReg::onNextRegClick(wxCommandEvent& evt)
 	else
 	{
 		passenger = getPassengerData();
+		plane1.addCustomPassenger(*passenger);
+		initSeatPage();
 		progress->SetBitmap(wxBitmap("Linear_3.bmp", wxBITMAP_TYPE_BMP));
 		currentPage->SetBitmap(wxBitmap("banner_Seat.bmp", wxBITMAP_TYPE_BMP));
 		mainSizer->Replace(panelReg, panelSeat);
@@ -367,9 +319,31 @@ void uaReg::onBackSeatClick(wxCommandEvent& evt)
 	this->Layout();
 }
 
-void uaReg::onMainMenuClick(wxCommandEvent& evt)
+void uaReg::resetDefaults()
 {
+	//Resets all pages and fields to their initial state
+	plane1.savePassengerData("myData");
 
+	tfFirstName->SetValue("");
+	tfLastName->SetValue("");
+	tfAge->SetValue("");
+	cmbSex->SetSelection(0);
+	tfEmail->SetValue("");
+	tfHeight->SetValue("");
+	tfWeight->SetValue("");	
+	radPregnant->SetSelection(1);
+	cmbSpecialNeeds->SetSelection(0);
+
+	progress->SetBitmap(wxBitmap("Linear_1.bmp", wxBITMAP_TYPE_BMP));
+	currentPage->SetBitmap(wxBitmap("banner_start.bmp", wxBITMAP_TYPE_BMP));
+	if (panelSeat != NULL)
+	{
+		mainSizer->Replace(panelSeat, panelStart);
+		panelSeat->Hide();
+		panelStart->Show();
+	}
+	
+	this->Layout();
 }
 
 BetterPassenger* uaReg::getPassengerData()

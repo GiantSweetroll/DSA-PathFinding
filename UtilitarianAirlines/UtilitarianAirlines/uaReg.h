@@ -5,6 +5,7 @@
 #include "uaMethods.h"
 #include "uaID.h"
 #include "BetterPassenger.h"
+#include "uaConstants.h"
 
 class uaReg : public wxPanel
 {
@@ -40,8 +41,6 @@ private:
 	wxButton* btnNextStart = nullptr;
 	wxButton* btnNextReg = nullptr;
 	wxButton* btnBackReg = nullptr;
-	wxButton* btnBackSeat = nullptr;
-	wxButton* btnMainMenu = nullptr;
 	wxButton* btnBack = nullptr;
 	wxComboBox* cmbSex = nullptr;
 	wxComboBox* cmbSpecialNeeds = nullptr;
@@ -66,6 +65,8 @@ private:
 	void onMainMenuClick(wxCommandEvent& evt);
 	BetterPassenger* getPassengerData();
 	bool allItemsFilled();
+public:
+	void resetDefaults();
 
 	wxDECLARE_EVENT_TABLE();
 };

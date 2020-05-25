@@ -1,5 +1,5 @@
 #include "BetterPlane.h"
-#include "uaMethods.h"
+#include <wx\msgdlg.h>
 
 BetterPlane::BetterPlane(int seatRows, int left, int middle, int right) : Plane(left + middle + right, seatRows)
 {
@@ -7,6 +7,7 @@ BetterPlane::BetterPlane(int seatRows, int left, int middle, int right) : Plane(
 	this->left = left;
 	this->right = right;
 	this->middle = middle;
+	passengerSeatMap = new map<string, SeatCoord>();
 }
 
 BetterPlane::~BetterPlane()
@@ -54,21 +55,74 @@ void BetterPlane::setSeatRowsCount(int n)
 	seatRows = n;
 }
 
-int** BetterPlane::getEmergencyExits2DArray()
+LinkedList<LinkedList<int>> BetterPlane::getEmergencyExitsArray2()
 {
 	LinkedList<SeatCoord> list = getEmergencyExits();
-	int** array2d = uaMethods::create2DArray(getSeatRowsCount(), getLength());
+	LinkedList<LinkedList<int>>* newList = new LinkedList<LinkedList<int>>();
+	map<int, LinkedList<int>> map;
 
-	//For emergency exits with its own row, the index is -1 from the row after it.
+	//For emergency exits with its own row, the index is -1 from the seat row after it.
 	//For emergency exits on the same row as the seats, use that seat's row index.
 
 	for (int i = 0, j=0; i < list.size(); i++)
 	{
 		SeatCoord c = list.get(i);
-		//Check if it's a whole number
+		LinkedList<int>* subList = new LinkedList<int>();
+		
+		//Check if it's a whole number. Whole number means it's in the same row as the seats. Decimal means it is its own row.
 		if (floor(c.lengthAxis) == c.lengthAxis)
 		{
+			subList->add((int)c.lengthAxis);
+		}
+		else
+		{
+			//Decimal
+			subList->add(floor(c.lengthAxis));
+		}
+		subList->add(1);
+		//Left or right?
+		if (c.widthAxis == 0)
+		{
+			//Left
+			subList->add(0);
+		}
+		else
+		{
+			//Right
+			subList->add(1);
+		}
 
+		//Check if emergency exit already exists
+		if (map.find(subList->get(0)) != map.end())
+		{
+			//If exists
+			j = subList->get(0);
+			map[j].update(1, 2);
+		}
+		else
+		{
+			map.insert(pair<int, LinkedList<int>>(subList->get(0), *subList));
 		}
 	}
+
+	//Convert to linkedlist 2d
+	for (const auto& entry : map)
+	{
+		newList->add(entry.second);
+	}
+
+	return *newList;
+}
+
+void BetterPlane::addCustomPassenger(BetterPassenger passenger)
+{
+	Plane::addCustomPassenger(passenger);
+	Plane::generate();
+	LinkedList<SeatCoord> list = Plane::getCustomPassengerPos();
+	passengerSeatMap->insert(pair<string, SeatCoord>(passenger.getEmail(), list.get(list.size() - 1)));
+}
+
+SeatCoord BetterPlane::getCustomPassengerSeat(string email)
+{
+	return passengerSeatMap->find(email)->second;
 }
