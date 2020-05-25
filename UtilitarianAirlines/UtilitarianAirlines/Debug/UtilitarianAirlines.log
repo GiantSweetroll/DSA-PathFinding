@@ -1,9 +1,4 @@
-﻿  BetterPlane.cpp
-H:\Projects\Project 7 - C++\DSA-PathFinding\UtilitarianAirlines\UtilitarianAirlines\Algorithms\Passenger.h(70,54): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-H:\Projects\Project 7 - C++\DSA-PathFinding\UtilitarianAirlines\UtilitarianAirlines\Algorithms\Passenger.h(71,54): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-H:\Projects\Project 7 - C++\DSA-PathFinding\UtilitarianAirlines\UtilitarianAirlines\Algorithms\Passenger.h(72,54): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-H:\Projects\Project 7 - C++\DSA-PathFinding\UtilitarianAirlines\UtilitarianAirlines\Algorithms\Plane.h(161,55): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-H:\Projects\Project 7 - C++\DSA-PathFinding\UtilitarianAirlines\UtilitarianAirlines\Algorithms\Plane.h(161,103): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-  uaMethods.cpp
+﻿  uaMethods.cpp
+  uaReg.cpp
   Generating Code...
   UtilitarianAirlines.vcxproj -> H:\Projects\Project 7 - C++\DSA-PathFinding\UtilitarianAirlines\Debug\UtilitarianAirlines.exe
