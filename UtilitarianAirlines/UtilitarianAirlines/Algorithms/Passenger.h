@@ -139,6 +139,8 @@ public:
         }
 
         mmr *= ((gender == FEMALE && pregnant) ? 0.75 : 1.0) * (disabilities / 100.0);
+		
+		mmr = Rand::clampNum(mmr, 0, 10);
 
     }
 
