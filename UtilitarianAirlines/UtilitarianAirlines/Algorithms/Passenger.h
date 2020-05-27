@@ -6,10 +6,10 @@
 
 #define MIN_AGE 8
 #define MAX_AGE 83
-#define MIN_WEIGHT 37
-#define MAX_WEIGHT 206
-#define MIN_HEIGHT 90
-#define MAX_HEIGHT 210
+#define MIN_WEIGHT 37.0
+#define MAX_WEIGHT 206.0
+#define MIN_HEIGHT 90.0
+#define MAX_HEIGHT 210.0
 
 class Passenger {
 
@@ -67,7 +67,7 @@ public:
         // Note that the parameters in the randomNormalNum function Defines the upper bound and lower bound of the distribution.
         return Passenger(
                 gender,
-                (Rand::clampNum(Rand::randomNormalNum(0.0, 75.0, 3.0), MIN_AGE, MAX_AGE)), // Random age with min 2 and max 8
+                (Rand::clampNum((int)Rand::randomNormalNum(0.0, 75.0, 3.0), MIN_AGE, MAX_AGE)), // Random age with min 2 and max 8
                 (Rand::clampNum(Rand::randomNormalNum(30.0, 110.0, 5.0), MIN_WEIGHT, MAX_WEIGHT)), // Random weight with min 47 and max 206
                 (Rand::clampNum(Rand::randomNormalNum(120.0, 225.0, 4.0), MIN_HEIGHT, MAX_HEIGHT) / 100.0), // Random height with min 90 and max 210
                 ((gender == FEMALE) && (rand() % 100 == 3)) ? true : false, // 3 out of 100 females are pregnant.
@@ -140,7 +140,7 @@ public:
 
         mmr *= ((gender == FEMALE && pregnant) ? 0.75 : 1.0) * (disabilities / 100.0);
 		
-		mmr = Rand::clampNum(mmr, 0, 10);
+		mmr = Rand::clampNum(mmr, 0.0, 10.0);
 
     }
 
