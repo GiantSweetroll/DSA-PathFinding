@@ -303,6 +303,11 @@ void uaReg::onNextRegClick(wxCommandEvent& evt)
 				panelSeat->Show();
 				this->Layout();
 			}
+			else
+			{
+				wxMessageDialog* msg = new wxMessageDialog(this, "That email has already been registered.", "User Registered!");
+				msg->ShowModal();
+			}
 		}
 	}
 }
