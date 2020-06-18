@@ -69,7 +69,7 @@ wxBoxSizer* uaMethods::getSeatingSizer(wxWindow* parent, BetterPlane plane, Seat
 			text->SetFont(*seatFont);
 			if (seatHighlight.lengthAxis == i && seatHighlight.widthAxis == seatNum-1)
 			{
-				text->SetBackgroundColour(wxColour(255, 0, 0, 255));
+				text->SetBackgroundColour(wxColour(96, 155, 231, 255));
 				text->SetForegroundColour(wxColour(255, 255, 255, 255));
 			}
 			wxGridSizer* sizer = new wxGridSizer(1, 0, 0);
