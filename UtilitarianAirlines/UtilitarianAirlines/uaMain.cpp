@@ -11,7 +11,7 @@ wxBEGIN_EVENT_TABLE(uaMain, wxFrame)
 wxEND_EVENT_TABLE()
 
 
-uaMain::uaMain() : wxFrame(nullptr, wxID_ANY, "Seating - Utilitarian Airlines", wxPoint(0, 0), wxSize(1920, 1080))
+uaMain::uaMain() : wxFrame(nullptr, wxID_ANY, "Seating - Utilitarian Airlines", wxPoint(0, 0), wxSize(1920, 1080), wxDEFAULT_FRAME_STYLE & ~(wxRESIZE_BORDER | wxMAXIMIZE_BOX))
 {
 	//Initialization
 	wxInitAllImageHandlers();
