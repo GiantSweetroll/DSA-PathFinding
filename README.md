@@ -2,7 +2,7 @@
 <br />
 <div align="center">
   <a href="https://gitlab.com/giantsweetroll/AI-Roulette">
-    <img src="images/logo.png" alt="Logo" width="15%">
+    <img src="img/logo.png" alt="Logo" width="15%">
   </a>
   <h3 align="center">Utilitarian Airlines</h3>
   <p>
@@ -119,4 +119,4 @@ Project Link: [https://github.com/GiantSweetroll/DSA-PathFinding](https://github
 [license-url]: https://github.com/github_username/repo/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/github_username
-[product-screenshot]: images/screenshot.png
+[product-screenshot]: img/screenshot.png
