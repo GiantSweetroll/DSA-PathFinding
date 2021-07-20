@@ -85,7 +85,7 @@ Distributed under the Apache-2.0 License. See `LICENSE` for more information.
 ## Contact
 
 Bently Edyson - bentlyedyson@gmail.com <br>
-Jason Christian - [LinkedIn](https://www.linkedin.com/in/jasoncoding/) - jason@jasoncoding.com <br>
+Jason Christian - [LinkedIn](https://www.linkedin.com/in/jasoncoding/) - nakamarujc@gmail.com <br>
 Gardyan Priangga Akbar - [LinkedIn](https://www.linkedin.com/in/gardyan-akbar-246a13194/) - gardyanakbar99@gmail.com
 
 Project Link: [https://github.com/GiantSweetroll/DSA-PathFinding](https://github.com/GiantSweetroll/DSA-PathFinding)
