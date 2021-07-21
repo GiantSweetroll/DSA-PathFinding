@@ -44,7 +44,7 @@
 
 [![Project Screen Shot][product-screenshot]](https://github.com/GiantSweetroll/DSA-PathFinding)
 
-This is a group project by Bently Edyson, Jason Christian, and Gardyan Akbar for Data Structures and Algorithms course. This app allows you to book a ticket to board an airplane, however, you are not able to manually set your seats. Instead, an algorithm is used to place your seating in such a way that would allow people that are deemed more beneficial for the human race to have a higher chance of surviving in times of emergency. This project is used to demonstrate the power of data structures in managing people and not to be taken literally.
+This is a group project by Bently Edyson, Jason Christian, and Gardyan Akbar for Data Structures and Algorithms course. This app allows you to book a ticket to board an airplane, however, you are not able to manually set your seats. Instead, an algorithm is used to place your seating in such a way that would allow people that are deemed more beneficial for the human race to have a higher chance of surviving in times of emergency. This project is used to demonstrate the power of data structures in managing people and not to be taken literally as something that should be implemented in every airline.
 
 ### Built With
 
