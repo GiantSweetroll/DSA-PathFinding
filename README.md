@@ -1,7 +1,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://gitlab.com/giantsweetroll/AI-Roulette">
+  <a href="https://github.com/GiantSweetroll/DSA-PathFinding">
     <img src="img/logo.png" alt="Logo" width="15%">
   </a>
   <h3 align="center">Utilitarian Airlines</h3>
@@ -72,7 +72,6 @@ To get a local copy up and running follow these simple steps.
 
 <!-- USAGE EXAMPLES -->
 ## Usage
-
 
 <!-- LICENSE -->
 ## License
