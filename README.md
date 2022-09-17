@@ -42,7 +42,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Project Screen Shot][product-screenshot]](https://github.com/GiantSweetroll/DSA-PathFinding)
+<!-- [![Project Screen Shot][product-screenshot]](https://github.com/GiantSweetroll/DSA-PathFinding) -->
 
 This is a group project by Bently Edyson, Jason Christian, and Gardyan Akbar for Data Structures and Algorithms course. This app allows you to book a ticket to board an airplane, however, you are not able to manually set your seats. Instead, an algorithm is used to place your seating in such a way that would allow people that are deemed more beneficial for the human race to have a higher chance of surviving in times of emergency. This project is used to demonstrate the power of data structures in managing people and not to be taken literally as something that should be implemented in every airline.
 
@@ -58,7 +58,8 @@ To get a local copy up and running follow these simple steps.
 
 ### Prerequisites
 
-* [Visual Studio](https://visualstudio.microsoft.com/)
+* [Visual Studio 2019](https://visualstudio.microsoft.com/)
+* [wxWidgets 3.1.3](https://www.wxwidgets.org/)
 
 ### Installation
 
@@ -66,12 +67,38 @@ To get a local copy up and running follow these simple steps.
    ```sh
    git clone https://github.com/GiantSweetroll/DSA-PathFinding.git
    ```
-1. Done
+1. According to your setup, you might need to make sure the project properly links to where you installed wxWidgets.
 
 
 
 <!-- USAGE EXAMPLES -->
 ## Usage
+When you first open the app, you will be greated with the landing page. From here, you need to first register a seat.
+<div align="center">
+  <img src="./img/mainmenu.PNG" width="35%">
+</div>
+
+Next follow the prompts on the screen to register your seating. Remember to take note of your email as this will be used to check back your seating.
+<div align="center">
+  <table class="tableImageCaption">
+    <tr>
+      <td> <img src="./img/register1.png"> </td>
+      <td> <img src="./img/register2.png"> </td>
+      <td> <img src="./img/register3.png"> </td>
+    </tr>
+    <tr>
+      <td> <p align="center"><i>Begin registration</i></p> </td>
+      <td> <p align="center"><i>Enter details</i></p> </td>
+      <td> <p align="center"><i>View seating</i></p> </td>
+    </tr>
+  </table>
+</div>
+
+After registering, you can check your seating again by pressing the "View Seat" button in the main menu and entering your email address you used to register.
+
+<div align="center">
+  <img src="./img/seatmap.png"  width="35%">
+</div>
 
 <!-- LICENSE -->
 ## License
@@ -85,7 +112,7 @@ Distributed under the Apache-2.0 License. See `LICENSE` for more information.
 
 Bently Edyson - bentlyedyson@gmail.com <br>
 Jason Christian - [LinkedIn](https://www.linkedin.com/in/jasoncoding/) - nakamarujc@gmail.com <br>
-Gardyan Priangga Akbar - [LinkedIn](https://www.linkedin.com/in/gardyan-akbar-246a13194/) - gardyanakbar99@gmail.com
+Gardyan Priangga Akbar - [LinkedIn](https://www.linkedin.com/in/gardyanakbar/) - gardyanakbar99@gmail.com
 
 Project Link: [https://github.com/GiantSweetroll/DSA-PathFinding](https://github.com/GiantSweetroll/DSA-PathFinding)
 
@@ -100,7 +127,11 @@ Project Link: [https://github.com/GiantSweetroll/DSA-PathFinding](https://github
 <!-- SCREENSHOTS -->
 <details open="open">
   <summary><h2 style="display: inline-block">Screenshots</h2></summary>
-<!--   <img src="images/mainmenu.PNG" alt="main menu" width="20%"> -->
+  <img src="./img/mainmenu.PNG" alt="main menu" width="20%">
+  <img src="./img/register1.PNG" alt="main menu" width="20%">
+  <img src="./img/register2.PNG" alt="main menu" width="20%">
+  <img src="./img/register3.PNG" alt="main menu" width="20%">
+  <img src="./img/seatmap.PNG" alt="main menu" width="20%">
 </details>
 
 
@@ -118,4 +149,4 @@ Project Link: [https://github.com/GiantSweetroll/DSA-PathFinding](https://github
 [license-url]: https://github.com/github_username/repo/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/github_username
-[product-screenshot]: img/screenshot.png
+[product-screenshot]: img/register3.PNG
